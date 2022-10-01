@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name "BME")(type "KiCad")(uri "${KIPRJMOD}/bme.kicad_sym")(options "")(descr ""))
+  (lib (name "farnell")(type "Legacy")(uri "${KIPRJMOD}/farnell.lib")(options "")(descr ""))
 )
