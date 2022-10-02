@@ -2,4 +2,5 @@
   (lib (name "BME")(type "KiCad")(uri "${KIPRJMOD}/footprint/bme")(options "")(descr ""))
   (lib (name "farnell")(type "KiCad")(uri "${KIPRJMOD}/footprint/farnell")(options "")(descr ""))
   (lib (name "max919")(type "KiCad")(uri "${KIPRJMOD}/footprint/maxim")(options "")(descr ""))
+  (lib (name "bas70-7")(type "KiCad")(uri "${KIPRJMOD}/footprint/bas")(options "")(descr ""))
 )

@@ -2,4 +2,5 @@
   (lib (name "BME")(type "KiCad")(uri "${KIPRJMOD}/bme.kicad_sym")(options "")(descr ""))
   (lib (name "farnell")(type "Legacy")(uri "${KIPRJMOD}/2022-10-01_20-49-21.lib")(options "")(descr ""))
   (lib (name "RET")(type "KiCad")(uri "${KIPRJMOD}/ret.kicad_sym")(options "")(descr ""))
+  (lib (name "bas70-7")(type "KiCad")(uri "${KIPRJMOD}/2022-10-02_20-38-34.kicad_sym")(options "")(descr ""))
 )
