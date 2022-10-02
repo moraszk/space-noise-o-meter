@@ -1353,7 +1353,7 @@
     (in_bom yes) (on_board yes)
     (uuid 10e4a318-4512-4650-99a4-239cc5464296)
     (property "Reference" "R?" (id 0) (at 71.12 39.878 90))
-    (property "Value" "1k" (id 1) (at 71.12 41.91 90))
+    (property "Value" "10k" (id 1) (at 71.12 41.91 90))
     (property "Footprint" "" (id 2) (at 71.12 43.688 90)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -2363,7 +2363,7 @@
     (in_bom yes) (on_board yes)
     (uuid cbe05dfb-8665-406c-869c-0c5bc5b56ba7)
     (property "Reference" "R?" (id 0) (at 71.12 34.29 90))
-    (property "Value" "1k" (id 1) (at 71.12 36.83 90))
+    (property "Value" "10k" (id 1) (at 71.12 36.83 90))
     (property "Footprint" "" (id 2) (at 71.12 38.608 90)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -2799,7 +2799,7 @@
       (reference "R?") (unit 1) (value "R") (footprint "")
     )
     (path "/10e4a318-4512-4650-99a4-239cc5464296"
-      (reference "R?") (unit 1) (value "1k") (footprint "")
+      (reference "R?") (unit 1) (value "10k") (footprint "")
     )
     (path "/3b5914d8-e3c0-4a01-a39d-adaadd543be4"
       (reference "R?") (unit 1) (value "R") (footprint "")
@@ -2814,7 +2814,7 @@
       (reference "R?") (unit 1) (value "800k") (footprint "")
     )
     (path "/cbe05dfb-8665-406c-869c-0c5bc5b56ba7"
-      (reference "R?") (unit 1) (value "1k") (footprint "")
+      (reference "R?") (unit 1) (value "10k") (footprint "")
     )
     (path "/d5f2a7fd-4437-4a7d-8bdd-51c9f1f3e01a"
       (reference "R?") (unit 1) (value "R") (footprint "")
