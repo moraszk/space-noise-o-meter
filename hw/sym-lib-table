@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name "BME")(type "KiCad")(uri "${KIPRJMOD}/bme.kicad_sym")(options "")(descr ""))
-  (lib (name "farnell")(type "Legacy")(uri "${KIPRJMOD}/farnell.lib")(options "")(descr ""))
+  (lib (name "farnell")(type "Legacy")(uri "${KIPRJMOD}/2022-10-01_20-49-21.lib")(options "")(descr ""))
+  (lib (name "max919")(type "Legacy")(uri "${KIPRJMOD}/2022-10-02_11-55-30.lib")(options "")(descr ""))
 )
