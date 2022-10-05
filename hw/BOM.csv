@@ -1,0 +1,89 @@
+﻿Source:,/home/antall/space_noise/space-noise-o-meter/hw/module.kicad_sch
+Date:,"2022. okt. 5., szerda, 01:04:04 CEST"
+Tool:,Eeschema (6.0.7)
+Generator:,/usr/share/kicad/plugins/bom_csv_grouped_by_value.py
+Component Count:,46
+,
+Individual Components:,
+,
+Item,Qty,Reference(s),Value,LibPart,Footprint,Datasheet
+,,C1,10n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25188/534788/Nic_NMC_X7R.pdf
+,,C2,10n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25188/534788/Nic_NMC_X7R.pdf
+,,C3,100n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25077/534588/Yageo_X7R_6.3V_50V.pdf
+,,C4,100n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25077/534588/Yageo_X7R_6.3V_50V.pdf
+,,C5,200p,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25069/453272/UPY-GP_NP0_16V-to-50V_10.pdf
+,,C6,200p,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25069/453272/UPY-GP_NP0_16V-to-50V_10.pdf
+,,C7,10n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25188/534788/Nic_NMC_X7R.pdf
+,,C8,100n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25077/534588/Yageo_X7R_6.3V_50V.pdf
+,,C9,100n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25077/534588/Yageo_X7R_6.3V_50V.pdf
+,,C10,10n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25188/534788/Nic_NMC_X7R.pdf
+,,C11,100n,Device:C,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,https://www.ret.hu/media/product/25081/534597/Yageo_X7R_6.3V_50V.pdf
+,,C12,100n,Device:C,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,https://www.ret.hu/media/product/25081/534597/Yageo_X7R_6.3V_50V.pdf
+,,C13,100n,Device:C,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,https://www.ret.hu/media/product/25081/534597/Yageo_X7R_6.3V_50V.pdf
+,,C14,100n,Device:C,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,https://www.ret.hu/media/product/25081/534597/Yageo_X7R_6.3V_50V.pdf
+,,C15,1n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25070/534585/Yageo_X7R_6.3V_50V.pdf
+,,C16,4u7,Device:C,Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder,https://www.ret.hu/media/product/32953/618460/DataSheet_CL05A475MO5NUN_20200929.pdf,,,
+,,C17,4u7,Device:C,Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder,https://www.ret.hu/media/product/32953/618460/DataSheet_CL05A475MO5NUN_20200929.pdf,,,
+,,C18,4u7,Device:C,Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder,https://www.ret.hu/media/product/32953/618460/DataSheet_CL05A475MO5NUN_20200929.pdf,,,
+,,C19,4u7,Device:C,Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder,https://www.ret.hu/media/product/32953/618460/DataSheet_CL05A475MO5NUN_20200929.pdf,,,
+,,C20,4u7,Device:C,Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder,https://www.ret.hu/media/product/32953/618460/DataSheet_CL05A475MO5NUN_20200929.pdf,,,
+,,C21,4u7,Device:C,Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder,https://www.ret.hu/media/product/32953/618460/DataSheet_CL05A475MO5NUN_20200929.pdf,,,
+,,C22,200p,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25069/453272/UPY-GP_NP0_16V-to-50V_10.pdf,,,
+,,Int1,MRC-100_simplified,BME:MRC-100_simplified,BME:mrc-100,,,,
+,,L1,27n,Device:L,Inductor_SMD:L_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,Q1,MUN 2211,Device:Q_NPN_BEC_BRT,Package_TO_SOT_SMD:SOT-23_Handsoldering,https://www.onsemi.com/pdf/datasheet/dtc114e-d.pdf,,,
+,,R1,10k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,R2,10k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,R3,800k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,R4,800k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,R5,10,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,R6,500k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,R7,500k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,R8,10k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,R9,100,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,R11,150k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,R12,150k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,~,,,
+,,TP1,SWDIO,Connector:TestPoint,TestPoint:TestPoint_Pad_3.0x3.0mm,~,,,
+,,TP2,SWCLK,Connector:TestPoint,TestPoint:TestPoint_Pad_3.0x3.0mm,~,,,
+,,U1,CFPS-39,Oscillator:FT5HV,Oscillator:Oscillator_SMD_EuroQuartz_XO32-4Pin_3.2x2.5mm_HandSoldering,https://www.farnell.com/datasheets/3161535.pdf,,,
+,,U2,CFPS-39,Oscillator:FT5HV,Oscillator:Oscillator_SMD_EuroQuartz_XO32-4Pin_3.2x2.5mm_HandSoldering,https://www.farnell.com/datasheets/3161535.pdf,,,
+,,U3,74LVC1G125,74xGxx:74LVC1G125,Package_TO_SOT_SMD:SOT-23-5_HandSoldering,http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf,,,
+,,U4,"74 LVC 1G3157GW,125",RET:mux,Package_TO_SOT_SMD:SOT-363_SC-70-6_Handsoldering,,,,
+,,U5,MAX919,RET:MAX919,Package_TO_SOT_SMD:SOT-23-5_HandSoldering,https://www.ret.hu/media/product/10588/540369/MAX917-MAX920.pdf,,,
+,,U6,STM32L010F4P6,farnell:STM32L010F4P6,farnell:STM32L010F4P6,https://hu.farnell.com/stmicroelectronics/stm32l010f4p6/mcu-32bit-32mhz-tssop-20/dp/2980875?st=stm32%20stm32l,,,
+,,U7,BAS70-7-F,:BAS70-7-F_1,Package_TO_SOT_SMD:SOT-143_Handsoldering,https://www.ret.hu/media/product/26443/617929/BAS70_1PS7XSB70_SER.pdf,,,
+,,U8,SS39ET,Sensor_Current:A1363xKTTN-1,Package_TO_SOT_SMD:SOT-23_Handsoldering,https://www.ret.hu/media/product/31487/604357/ss39et-ss49e-ss59et.pdf,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+Collated Components:,,,,,,,,,
+,,,,,,,Cikkszám,Elérhetőség,Ár ( Ft / db ) ,Darab,Részösszeg
+Item,Qty,Reference(s),Value,LibPart,Footprint,Datasheet,,,,,
+1,4,"C1, C2, C7, C10",10n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25188/534788/Nic_NMC_X7R.pdf,93-02-73,https://www.ret.hu/shop/product/nic-components/10-nf-50v-10-x7r-0603_93-02-73,17,20,340
+2,4,"C3, C4, C8, C9",100n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25077/534588/Yageo_X7R_6.3V_50V.pdf,93-01-61,https://www.ret.hu/shop/product/yageo/100-nf-16v-10-x7r-0603_93-01-61,17,20,340
+3,3,"C5, C6, C22",200p,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25069/453272/UPY-GP_NP0_16V-to-50V_10.pdf,93-01-52,https://www.ret.hu/shop/product/yageo/220-pf-50v-5-npo-0603_93-01-52,6,15,90
+4,4,"C11, C12, C13, C14",100n,Device:C,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,https://www.ret.hu/media/product/25081/534597/Yageo_X7R_6.3V_50V.pdf,93-01-66,https://www.ret.hu/shop/product/yageo/100-nf-25v-10-x7r-0805_93-01-66,17,20,340
+5,1,C15,1n,Device:C,Capacitor_SMD:C_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/25070/534585/Yageo_X7R_6.3V_50V.pdf,93-01-53,https://www.ret.hu/shop/product/yageo/1-nf-50v-10-x7r-0603_93-01-53,6,10,60
+6,6,"C16, C17, C18, C19, C20, C21",4u7,Device:C,Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder,https://www.ret.hu/media/product/32953/618460/DataSheet_CL05A475MO5NUN_20200929.pdf,93-07-71,https://www.ret.hu/shop/product/samsung/4-7-uf-16v-20-x5r-0402_93-07-71,256.02999999999997,25,6400.7499999999991
+7,1,Int1,MRC-100_simplified,BME:MRC-100_simplified,BME:mrc-100,,,,,,0
+8,1,L1,27n,Device:L,Inductor_SMD:L_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/23663/533101/Nic_NTL.pdf,77-01-08,https://www.ret.hu/shop/product/nic-components/ntl-06g27ntrf-27-nh-smd-0603_77-01-08,21,5,105
+9,1,Q1,MUN 2211,Device:Q_NPN_BEC_BRT,Package_TO_SOT_SMD:SOT-23_Handsoldering,https://www.onsemi.com/pdf/datasheet/dtc114e-d.pdf,44-01-14,https://www.ret.hu/shop/product/onsemi/mmun-2211lt1g-n-r_44-01-14,16.800000000000001,5,84
+10,3,"R1, R2, R8",10k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/24872/480970/PYu-RT_1-to-0.05_RoHS_L.pdf,92-02-89,https://www.ret.hu/shop/product/yageo/10-kohm-0-1w-0-5-0603-smd_92-02-89,4.7999999999999998,15,72
+11,2,"R3, R4",800k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/27321/537626/PYu-RC_Group_51_RoHS_L-3.pdf,96-05-87,https://www.ret.hu/shop/product/yageo/820-kohm-0-1w-1-0603-smd_96-05-87,4.7999999999999998,10,48
+12,1,R5,10,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/27028/537180/PYu-RC_Group_51_RoHS_L-3.pdf,96-02-93,https://www.ret.hu/shop/product/yageo/10-ohm-0-1w-1-0603-smd_96-02-93,7.2000000000000002,10,72
+13,2,"R6, R7",500k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/27130/483231/PYu-RC_Group_51_RoHS_L-3.pdf,96-03-95,https://www.ret.hu/shop/product/yageo/510-kohm-0-1w-1-0603-smd_96-03-95,3.5899999999999999,10,35.899999999999999
+14,1,R9,100,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/27034/537195/PYu-RC_Group_51_RoHS_L-3.pdf,96-02-99,https://www.ret.hu/shop/product/yageo/100-ohm-0-1w-1-0603-smd_96-02-99,9.5999999999999996,10,96
+15,2,"R11, R12",150k,Device:R,Resistor_SMD:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder,https://www.ret.hu/media/product/27053/537252/PYu-RC_Group_51_RoHS_L-3.pdf,96-03-18,https://www.ret.hu/shop/product/yageo/150-kohm-0-1w-1-0603-smd_96-03-18,7.2000000000000002,10,72
+16,1,TP1,SWDIO,Connector:TestPoint,TestPoint:TestPoint_Pad_3.0x3.0mm,~,,,,,0
+17,1,TP2,SWCLK,Connector:TestPoint,TestPoint:TestPoint_Pad_3.0x3.0mm,~,,,,,0
+18,2,"U1, U2",CFPS-39,Oscillator:FT5HV,Oscillator:Oscillator_SMD_EuroQuartz_XO32-4Pin_3.2x2.5mm_HandSoldering,https://www.farnell.com/datasheets/3161535.pdf,LFSPXO059271,https://hu.farnell.com/iqd-frequency-products/lfspxo059271/oscillator-10mhz-3-2mm-x-2-5mm/dp/3583462,907.19500000000005,10,9071.9500000000007
+19,1,U3,74LVC1G125,74xGxx:74LVC1G125,Package_TO_SOT_SMD:SOT-23-5_HandSoldering,http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf,78-03-01,https://www.ret.hu/shop/product/nexperia/74-lvc-1g125gv-125_78-03-01,150,5,750
+20,1,U4,"74 LVC 1G3157GW,125",RET:mux,Package_TO_SOT_SMD:SOT-363_SC-70-6_Handsoldering,https://www.ret.hu/media/product/31076/642932/74LVC1G3157_nexp.pdf,78-03-07,https://www.ret.hu/shop/product/nexperia/74-lvc-1g3157gw-125_78-03-07,190.80000000000001,5,954
+21,1,U5,MAX919,RET:MAX919,Package_TO_SOT_SMD:SOT-23-5_HandSoldering,https://www.ret.hu/media/product/10588/540369/MAX917-MAX920.pdf,38-19-91,https://www.ret.hu/shop/product/maxim/max-919euk-t_38-19-91,958.79999999999995,5,4794
+22,1,U6,STM32L010F4P6,farnell:STM32L010F4P6,farnell:STM32L010F4P6,https://www.farnell.com/datasheets/2710889.pdf,STM32L010F4P6,https://hu.farnell.com/stmicroelectronics/stm32l010f4p6/mcu-32bit-32mhz-tssop-20/dp/2980875?st=stm32%20stm32l,845.16399999999999,5,4225.8199999999997
+23,1,U7,BAS70-7-F,:BAS70-7-F_1,Package_TO_SOT_SMD:SOT-143_Handsoldering,https://www.ret.hu/media/product/26443/617929/BAS70_1PS7XSB70_SER.pdf,95-00-70,https://www.ret.hu/shop/product/nxp/bas-70-07_95-00-70,38.399999999999999,5,192
+24,1,U8,SS39ET,Sensor_Current:A1363xKTTN-1,Package_TO_SOT_SMD:SOT-23_Handsoldering,https://www.ret.hu/media/product/31487/604357/ss39et-ss49e-ss59et.pdf,50-01-80,https://www.ret.hu/shop/product/honeywell/ss-39et_50-01-80,660.00999999999999,5,3300.0500000000002
+,,,,,,,,,,,
+,,,,,,,,,,Sum:,31443.469999999998
+,,,,,,,,,,,
+,,,,,,,,,,,
