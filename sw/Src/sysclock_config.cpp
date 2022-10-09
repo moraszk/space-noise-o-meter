@@ -50,4 +50,41 @@ void SystemClock_Config(void)
 	//Configure USARTx clock source
 	RCC->CCIPR |= (uint32_t)((RCC_CCIPR_USART2SEL << 16U) | 0x00000000U) ;
 	
+	
+	
+	    // RCC pin gpio init
+        GPIOC->BSRR = 1 << (0x00000002U);
+        
+        if((GPIO_MODER_MODE0_1 == GPIO_MODER_MODE0_0 ) || (GPIO_MODER_MODE0_1 == GPIO_MODER_MODE0_1))
+            {
+                GPIOC->OSPEEDR |= GPIO_OSPEEDER_OSPEED2_0;	
+                    
+                GPIOC->OTYPER |= (0x00000000U);	//output mode config
+                    
+            }
+                
+                GPIOC->PUPDR |= GPIO_PUPDR_PUPD0;
+                
+                    if(GPIO_MODER_MODE0_1 == GPIO_MODER_MODE0_1)
+                    {
+                        if(GPIOC < GPIO_BSRR_BS_8)
+                        {
+                            GPIOC->AFR[0] |= GPIO_AFRL_AFSEL0; //??
+                        }
+                        else
+                        {
+                            GPIOC->AFR[1] |= GPIO_AFRH_AFSEL8; //??
+                        }
+                        
+                    }
+                
+        GPIOC->MODER |= GPIO_MODER_MODE0;
+			
+                
+	
+	
+	
+	
+	
+	
 }	

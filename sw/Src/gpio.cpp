@@ -9,61 +9,34 @@ void gpio::init(){
 		
 		
     // hall pin gpio init
-        gpio::hall::on();
-    
-    	if((gpio::hall::mode == GPIO_MODER_MODE0_0 ) || (gpio::hall::mode == GPIO_MODER_MODE0_1))	
+        GPIOC->BSRR = 1 << gpio::hall::pin;		
+		}
+        
+    	if((GPIO_MODER_MODE0_0 == GPIO_MODER_MODE0_0 ) || (GPIO_MODER_MODE0_0 == GPIO_MODER_MODE0_1))	
 			{
-				gpio::hall::port->OSPEEDR |= GPIO_OSPEEDER_OSPEED2_0 << gpio::hall::speed;	
+				GPIOC->OSPEEDR |= GPIO_OSPEEDER_OSPEED2_0 ;	
 				
-				gpio::hall::port->OTYPER |= gpio::hall::output_type << gpio::hall::pin;	//output mode config
+				GPIOC->OTYPER |= (0x00000000U) ;	//output mode config
 				
 			}
 			
-				gpio::hall::port->PUPDR |= GPIO_PUPDR_PUPD0 << gpio::hall::pull;
+				GPIOC->PUPDR |= GPIO_PUPDR_PUPD0;
 			
 				
-				gpio::hall::port->MODER |= GPIO_MODER_MODE0 << gpio::hall::mode;
+				GPIOC->MODER |= GPIO_MODER_MODE0;
 			
     
-    // oscillator pin gpio init            
-    	gpio::oscillator::on();
+    // oscillator pin gpio init 
+                GPIOC->BSRR = 1 << gpio::oscillator::pin;
         
-            	gpio::oscillator::port->PUPDR |= GPIO_PUPDR_PUPD0 << gpio::oscillator::pull;
+            	GPIOC->PUPDR |= GPIO_PUPDR_PUPD0;
 			
 				
-				gpio::oscillator::port->MODER |= GPIO_MODER_MODE0 << gpio::oscillator::mode;
+				GPIOC->MODER |= GPIO_MODER_MODE0;
 			
 		
-    // RCC pin gpio init
-        gpio::RCC::on();
-                
-        if((gpio::RCC::mode == GPIO_MODER_MODE0_0 ) || (gpio::RCC::mode == GPIO_MODER_MODE0_1))
-            {
-                gpio::RCC::port->OSPEEDR |= GPIO_OSPEEDER_OSPEED2_0 << gpio::RCC::speed;	
-                    
-                gpio::RCC::port->OTYPER |= gpio::RCC::output_type << gpio::RCC::pin;	//output mode config
-                    
-            }
-                
-                gpio::RCC::port->PUPDR |= GPIO_PUPDR_PUPD0 << gpio::RCC::pull;
-                
-                    if(gpio::RCC::mode == GPIO_MODER_MODE0_1)
-                    {
-                        if(gpio::RCC::port < GPIO_BSRR_BS_8)
-                        {
-                            gpio::RCC::port->AFR[0] |= GPIO_AFRL_AFSEL0 << gpio::RCC::alternate; //??
-                        }
-                        else
-                        {
-                            gpio::RCC::port->AFR[1] |= GPIO_AFRH_AFSEL8 << gpio::RCC::alternate; //??
-                        }
-                        
-                    }
-                
-        gpio::RCC::port->MODER |= GPIO_MODER_MODE0 << gpio::RCC::mode;
-			
-                
+
             
             
             
-}
+
