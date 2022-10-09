@@ -13,7 +13,8 @@ parserArgumentsOpenCL=-ferror-limit=100 -fspell-checking -Wdocumentation -Wunuse
 Name=GCC
 
 [CustomDefinesAndIncludes][ProjectPath0][Includes]
-1=/home/kisada/projects/space-noise-o-meter/sw/Inc/
+1=/home/kisada/projects/space-noise-o-meter/sw/Inc
+2=/home/antall/space_noise/space-noise-o-meter/sw/Inc
 
 [Project]
 VersionControlSupport=kdevgit
