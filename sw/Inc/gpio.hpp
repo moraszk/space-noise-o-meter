@@ -71,20 +71,6 @@ namespace gpio{
 				:
 				PRIMARY;
 		}
-		
-		inline static void on()
-		{
-				gpio::oscillator::port->BSRR = 1 << gpio::oscillator::pin;		
-		}
-		
-
-		inline static void off()
-		{
-				gpio::oscillator::port->BSRR = 1 << gpio::oscillator::pin << 16;			
-		}
-		
-		
-		
 	}
 
 	
