@@ -2289,8 +2289,7 @@ typedef struct
 #define GPIO_BSRR_BS_11                 (0x00000800U)                          
 #define GPIO_BSRR_BS_12                 (0x00001000U)                          
 #define GPIO_BSRR_BS_13                 (0x00002000U)                          
-#define 
-(0x00004000U)                          
+#define GPIO_BSRR_BS_14                 (0x00004000U)
 #define GPIO_BSRR_BS_15                 (0x00008000U)                          
 #define GPIO_BSRR_BR_0                  (0x00010000U)                          
 #define GPIO_BSRR_BR_1                  (0x00020000U)                          
