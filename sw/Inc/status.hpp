@@ -18,7 +18,8 @@ public:
         uint16_t overrun_error;
         uint16_t idle;
         uint16_t received_char;
-
+        uint16_t too_long_message;
+        uint16_t midpacket_char;
     } uart;
 };
 

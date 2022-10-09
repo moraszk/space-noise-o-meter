@@ -11,21 +11,25 @@ void USART2_IRQHandler(void) {
     static std::array<char,rx_buffer_size> new_msg_buffer = { 0 };
     static size_t index = 0;
     
-    if(LL_USART_IsActiveFlag_FE(USART6)){
+    if(USART2->ISR & USART_ISR_FE){
         sat_status.uart.frame_error++;
+        USART2->ICR = USART_ICR_FECF;
     }
-    if(LL_USART_IsActiveFlag_NE(USART6)){
+    if(USART2->ISR & USART_ISR_NE){
         sat_status.uart.noise_error++;
+        USART2->ICR = USART_ICR_NCF;
     }
-    if(LL_USART_IsActiveFlag_ORE(USART6)){
+    if(USART2->ISR & USART_ISR_ORE){
         sat_status.uart.overrun_error++;
+        USART2->ICR = USART_ICR_ORECF;
     }
-    if(LL_USART_IsActiveFlag_IDLE(USART6)){
+    if(USART2->ISR & USART_ISR_IDLE){
         sat_status.uart.idle++;
+        USART2->ICR = USART_ICR_IDLECF;
     }
     
-	if (LL_USART_IsActiveFlag_RXNE(USART6)) {
-		uint8_t received_char = USART6->DR;
+	if (USART2->ISR & USART_ISR_RXNE){
+		uint8_t received_char = USART2->RDR;
         sat_status.uart.received_char++;
         switch (state){
             case rxsate::WAITNEWPACKET:
@@ -38,13 +42,13 @@ void USART2_IRQHandler(void) {
                         state=rxsate::WAITNEWPACKET;
                         last_comm = CommandReceiver::command{new_msg_buffer, index};
                     } else if(index == rx_buffer_size){
-                        sat_status.uart.buffer_overflow++;
+                        sat_status.uart.too_long_message++;
                         state=rxsate::WAITNEWPACKET;
                     }
                     break;
                 } else {
             default:
-                    sat_status.uart.midpackage_garbage++;
+                    sat_status.uart.midpacket_char++;
                     state=rxsate::WAITNEWPACKET;
                 }
         }
