@@ -1,5 +1,5 @@
 #include "CommandReceiver.hpp"
-#include "stat.h"
+#include "status.hpp"
 #include <cstdio>
 #include "stm32l010x4.h"
 
@@ -12,21 +12,21 @@ void USART2_IRQHandler(void) {
     static size_t index = 0;
     
     if(LL_USART_IsActiveFlag_FE(USART6)){
-        sat_stat.uart.frame_error++;
+        sat_status.uart.frame_error++;
     }
     if(LL_USART_IsActiveFlag_NE(USART6)){
-        sat_stat.uart.noise_error++;
+        sat_status.uart.noise_error++;
     }
     if(LL_USART_IsActiveFlag_ORE(USART6)){
-        sat_stat.uart.overrun_error++;
+        sat_status.uart.overrun_error++;
     }
     if(LL_USART_IsActiveFlag_IDLE(USART6)){
-        sat_stat.uart.idle++;
+        sat_status.uart.idle++;
     }
     
 	if (LL_USART_IsActiveFlag_RXNE(USART6)) {
 		uint8_t received_char = USART6->DR;
-        sat_stat.uart.received_char++;
+        sat_status.uart.received_char++;
         switch (state){
             case rxsate::WAITNEWPACKET:
                 if(received_char == '$'){
@@ -38,13 +38,13 @@ void USART2_IRQHandler(void) {
                         state=rxsate::WAITNEWPACKET;
                         last_comm = CommandReceiver::command{new_msg_buffer, index};
                     } else if(index == rx_buffer_size){
-                        sat_stat.uart.buffer_overflow++;
+                        sat_status.uart.buffer_overflow++;
                         state=rxsate::WAITNEWPACKET;
                     }
                     break;
                 } else {
             default:
-                    sat_stat.uart.midpackage_garbage++;
+                    sat_status.uart.midpackage_garbage++;
                     state=rxsate::WAITNEWPACKET;
                 }
         }

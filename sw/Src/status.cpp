@@ -1,6 +1,6 @@
 #include "status.hpp"
 
-volatile sat_stat sat_status [[gnu::section(".noinit")]];
+sat_stat sat_status [[gnu::section(".noinit")]];
 
 #pragma GCC diagnostic ignored "-Wuninitialized"
 sat_stat::sat_stat(){
