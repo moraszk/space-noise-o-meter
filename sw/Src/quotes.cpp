@@ -2,6 +2,7 @@
 #include <array>
 #include <cstdio>
 #include <string_view>
+#include "utils.hpp"
 
 using namespace std::literals;
 
@@ -27,9 +28,14 @@ namespace{
         //Quotes
         "Hello",
         "World",
-        "Build with the donations of our sponsors: RET Elektronika and Eurocircuits",
+        "Build with the donations of our sponsors: RET Elektronika, Eurocircuits, FDH Kft.",
         "Outher quotes"
     );
+
+    const constexpr size_t datagram_lenght_ascii = 12;
+    const constexpr size_t datagram_length_base64 = datagram_lenght_ascii * 4 / 3;
+
+    static_assert(datagram_lenght_ascii < 19 -1 , "Maximum telemetry answer 19 (minus one char for classification)");
 }
 
 namespace quotes{
@@ -37,6 +43,10 @@ namespace quotes{
     
     void CalculateNextDatagram(){
             static size_t quotepartindex = 0;
-            
+            utils::base64::encode<12>(nextdatagram, book.begin()+quotepartindex);
+
+            static_assert( (book.size()%datagram_lenght_ascii) != 0, "Overflow when encoding the book");
+            quotepartindex+=datagram_lenght_ascii;
+            quotepartindex%=book.size();
     }
 }
