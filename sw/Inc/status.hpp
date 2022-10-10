@@ -12,6 +12,7 @@ public:
     sat_stat();
 
     uint16_t bootnum;
+    uint8_t unknown_interrupt;
     struct {
         uint16_t frame_error;
         uint16_t noise_error;

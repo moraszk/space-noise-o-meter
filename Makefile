@@ -33,3 +33,23 @@ OBJECTS = $(addsuffix .o,$(basename $(wildcard sw/Src/*.cpp sw/Src/*.c sw/Src/*.
 
 sw/main.elf: $(OBJECTS)
 	arm-none-eabi-g++ -o $@ $^ -mcpu=cortex-m0plus -T"stm32l010f4.ld" --specs=nosys.specs -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+
+clean:
+	find sw -name "*o" -delete
+	find . -name "*elf" -delete
+	
+####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####
+
+sw/Tests/%: sw/Tests/%.cpp
+	@echo "[CXX]    $(notdir $<)"
+	@g++ -std=c++20 $^ -o $@ -I sw/Tests -I sw/Inc -I sw/Src
+
+tests = $(basename $(wildcard sw/Tests/*cpp))
+
+tests: $(tests)
+	@for i in $^ ; do \
+                echo -n "Running test" $$i; \
+                ./$$i || echo -n "         FAIL                     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"; echo "";\
+        done
+
+.PHONY: tests clean
