@@ -1,76 +1,27 @@
 #include "stm32l010x4.h"
 
-
-void SystemClock_Config(void)
-{
-
-	//Set Flash latency to 0
-	FLASH->ACR = FLASH_ACR_LATENCY_Pos;
+void SystemClock_Config(void){
+	FLASH->ACR = FLASH_ACR_LATENCY_Pos; //One wait state flash
 
 	//wait until the flash latency is 1
-	while(!(FLASH->ACR & FLASH_ACR_LATENCY_Pos))
-	{
-	}
-	
-	//Set regu voltage scaling , enable HSE bypass , Enable HSE 
-	PWR->CR = PWR_CR_VOS_0 | RCC_CR_HSEBYP | RCC_CR_HSEON;
-	
-	
+	while(!(FLASH->ACR & FLASH_ACR_LATENCY_Pos)); //???? TODO
+
+	PWR->CR = PWR_CR_VOS_1; //1.5V Core voltage
+
+	//Enable HSE
+	RCC->CR = RCC_CR_HSEON | RCC_CR_HSEBYP | RCC_CR_MSION;
+
 	//wait until RCC_CR_HSERDY is 1
-	while(!(RCC_CR_HSERDY))
-	{
-	}
-	
-	//Set AHB Prescalar , Set APB1 prescalar , Set APB2 prescalar , configure the system clock source
+	while(!(RCC_CR_HSERDY));
+
+	RCC->CR = RCC_CR_HSEON | RCC_CR_HSEBYP; // RCC_CR_MSION -- msi is not needed in operation
+
+	//Set AHB Prescalar
 	RCC->CFGR = RCC_CFGR_HPRE_DIV1 | RCC_CFGR_PPRE1_DIV1 | RCC_CFGR_PPRE2_DIV1 | RCC_CFGR_SW_HSE;
-	
-	
+
 	//wait till system clock is ready
-	while (!(RCC_CFGR_SWS & RCC_CFGR_SWS_HSE  ))
-	{
-	}
-	
-	//wait 1ms
-	//...
-	
-	//Configure USARTx clock source
-	RCC->CCIPR = (uint32_t)((RCC_CCIPR_USART2SEL << 16U) | 0x00000000U) ;
-	
-	
-	
-	// RCC pin gpio init
-	GPIOC->BSRR = 1 << (0x00000002U);
-        
-        if((GPIO_MODER_MODE0_1 == GPIO_MODER_MODE0_0 ) || (GPIO_MODER_MODE0_1 == GPIO_MODER_MODE0_1))
-            {
-                GPIOC->OSPEEDR = GPIO_OSPEEDER_OSPEED2_0;	
-                    
-                GPIOC->OTYPER = (0x00000000U);	//output mode config
-                    
-            }
-                
-                GPIOC->PUPDR = GPIO_PUPDR_PUPD0;
-                
-                    if(GPIO_MODER_MODE0_1 == GPIO_MODER_MODE0_1)
-                    {
-                        if(GPIOC < GPIO_BSRR_BS_8)
-                        {
-                            GPIOC->AFR[0] = GPIO_AFRL_AFSEL0; //??
-                        }
-                        else
-                        {
-                            GPIOC->AFR[1] = GPIO_AFRH_AFSEL8; //??
-                        }
-                        
-                    }
-                
-	GPIOC->MODER = GPIO_MODER_MODE0;
-			
-                
-	
-	
-	
-	
-	
-	
-}	
+	while (!(RCC_CFGR_SWS & RCC_CFGR_SWS_HSE));
+
+	RCC->APB1ENR = RCC_APB1ENR_USART2EN | RCC_APB1ENR_TIM2EN;
+	RCC->IOPENR = RCC_IOPENR_GPIOAEN | RCC_IOPENR_GPIOBEN | RCC_IOPENR_GPIOCEN;
+}
