@@ -102,7 +102,7 @@ typedef enum
   */
 
 #include "core_cm0plus.h"
-#include "system_stm32l0xx.h"
+//#include "system_stm32l0xx.h"
 #include <stdint.h>
 
 /** @addtogroup Peripheral_registers_structures
