@@ -43,7 +43,7 @@ namespace utils{
     }
     
 
-    template<typename T, size_t size>
+    template<typename T, std::size_t size>
     class ringbuffer{
         static_assert(size!=0, "Ring buffer size must be at least one");
 
