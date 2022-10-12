@@ -63,8 +63,8 @@ namespace utils{
         bool empty(){ return read == write; }
 
         void put_nocheck(T n){
-            write = next_it(write);
             *write = std::move(n);
+             write = next_it(write);
         }
 
         bool put(T n){
