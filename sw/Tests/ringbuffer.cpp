@@ -19,8 +19,10 @@ int main(){
     ret+=rb.get()-'e';
     rb.put('g');
     rb.put('h');
+    ret+=rb.empty() ? 1 : 0;
     ret+=rb.get()-'f';
     ret+=rb.get()-'g';
     ret+=rb.get()-'h';
+    ret+=rb.empty() ? 0 : 1;
     return ret;
 }
