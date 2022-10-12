@@ -41,4 +41,46 @@ namespace utils{
         //void encode(std::array<T, s*4/3>&, const std::array<T, s>)  -> void encode<s>; TODO deduction guide
 
     }
+    
+
+    template<typename T, size_t size>
+    class ringbuffer{
+        static_assert(size!=0, "Ring buffer size must be at least one");
+
+        std::array<T, size> data;
+        std::array<T, size>::iterator read, write;
+
+        std::array<T, size>::iterator next_it(std::array<T, size>::iterator it){
+            it++;
+            if ( it == data.end() )
+                it=data.begin();
+            return it;
+        }
+
+    public:    
+        ringbuffer(): data{}, read{data.begin()}, write{read} {}
+
+        bool empty(){ return read == write; }
+
+        void put_nocheck(T n){
+            write = next_it(write);
+            *write = std::move(n);
+        }
+
+        bool put(T n){
+            put_nocheck(std::move(n));
+
+            if(empty()){
+                read=next_it(read);
+                return true;
+            } else
+                return false;
+        }
+
+        T get(){
+            T ret = *read;
+            read = next_it(read);
+            return ret;
+        }
+    };
 }
