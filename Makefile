@@ -29,10 +29,10 @@ CXXFLAGS = -std=c++2a -fno-exceptions -fno-rtti -fno-use-cxa-atexit
 AS = arm-none-eabi-gcc
 ASFLAGS = -mcpu=cortex-m0plus -g3 -c -x assembler-with-cpp --specs=nano.specs -mfloat-abi=soft -mthumb
 
-OBJECTS = $(addsuffix .o,$(basename $(wildcard sw/Src/*.cpp sw/Src/*.c sw/Src/*.S)))
+OBJECTS = $(addsuffix .o,$(basename $(wildcard sw/Src/*.cpp sw/Src/*.c sw/Src/*.s)))
 
 sw/main.elf: $(OBJECTS)
-	arm-none-eabi-g++ -o $@ $^ -mcpu=cortex-m0plus -T"stm32l010f4.ld" --specs=nosys.specs -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	arm-none-eabi-g++ -o $@ $^ -mcpu=cortex-m0plus -T ./sw/stm32l010f4.ld  --specs=nosys.specs -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 
 clean:
 	find sw -name "*o" -delete
