@@ -5,10 +5,10 @@ extern "C" void SystemClock_Config(void);
 void SystemClock_Config(void){
 	RCC->CIER = 0x00000000; //Turn off every interrupt
 	
-	FLASH->ACR = FLASH_ACR_LATENCY_Pos; //One wait state flash
+	FLASH->ACR = FLASH_ACR_LATENCY; //One wait state flash
 
 	//wait until the flash latency is 1
-	while(!(FLASH->ACR & FLASH_ACR_LATENCY_Pos)); //???? TODO
+	while(!(FLASH->ACR & FLASH_ACR_LATENCY)); //???? TODO
 
 	PWR->CR = PWR_CR_VOS_1; //1.5V Core voltage
 

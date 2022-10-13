@@ -32,7 +32,7 @@ ASFLAGS = -mcpu=cortex-m0plus -g3 -c -x assembler-with-cpp --specs=nano.specs -m
 OBJECTS = $(addsuffix .o,$(basename $(wildcard sw/Src/*.cpp sw/Src/*.c sw/Src/*.S)))
 
 sw/main.elf: $(OBJECTS)
-	arm-none-eabi-g++ -o $@ $^ -mcpu=cortex-m0plus -T"stm32l010f4.ld" --specs=nosys.specs -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	arm-none-eabi-g++ -o $@ $^ -mcpu=cortex-m0plus -T sw/stm32l010f4.ld --specs=nosys.specs -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 
 clean:
 	find sw -name "*o" -delete
