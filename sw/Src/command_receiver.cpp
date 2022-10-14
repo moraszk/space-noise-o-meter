@@ -40,13 +40,14 @@ void USART2_IRQHandler(void) {
                     new_msg_buffer[index++] = received_char;
                     if(received_char == '\n'){
                         state=rxsate::WAITNEWPACKET;
-                        last_comm = CommandReceiver::mrc_frame{new_msg_buffer, index};
+                        CommandReceiver::mrc_ingress_buffer.put(CommandReceiver::mrc_frame{new_msg_buffer, index});
                     } else if(index == rx_buffer_size){
                         sat_status.uart.too_long_message++;
                         state=rxsate::WAITNEWPACKET;
                     }
                     break;
                 } else {
+                [[fallthrough]];
             default:
                     sat_status.uart.midpacket_char++;
                     state=rxsate::WAITNEWPACKET;
