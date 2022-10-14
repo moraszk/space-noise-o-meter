@@ -22,7 +22,6 @@ CC = arm-none-eabi-gcc
 CXX = arm-none-eabi-g++
 
 CPPFLAGS = -mcpu=cortex-m0plus -g3 -O0 -ffunction-sections -fdata-sections -Wall -Wextra --specs=nano.specs -mfloat-abi=soft -mthumb -I sw/Inc
-#-DSTM32L010x4
 CFLAGS = -std=gnu11
 CXXFLAGS = -std=c++2a -fno-exceptions -fno-rtti -fno-use-cxa-atexit
 
@@ -36,7 +35,7 @@ sw/main.elf: $(OBJECTS)
 
 clean:
 	find sw -name "*o" -delete
-	find . -name "*elf" -delete
+	find sw -executable -type f -delete
 	
 ####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####
 
