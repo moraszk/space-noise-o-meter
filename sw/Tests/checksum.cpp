@@ -1,13 +1,39 @@
 #include "checksum.hpp" 
 #include "../Src/checksum.cpp"
+#include <string_view>
+#include <iostream>
 
 int main(){
-    const char buff[] = "$CMDHP,05,0D80,0001D97C*";
-    
-    uint16_t f16_sum[2];
-    checksum::fletcher16_init(f16_sum);
-    for(const char* i = buff+1; *i != '*'; i++)
-        checksum::fletcher16_update(f16_sum, *i);
+    {
+    const std::string_view example = "$SURUN,05,0D80,0001D97C#7B*";
 
-    return checksum::fletcher16_get_chksum(f16_sum) == 0xad8a;
+    //std::cout << example << std::hex << checksum::get_checksum(example.begin()+1, example.end()-1) << std::endl;
+
+    if (checksum::get_checksum(example.begin()+1, example.end()-1) != 0x38bb)
+        return 1;
+    }
+
+    //----------------------------------------------------------
+
+    {
+    const std::string_view example = "$CMDHP,05,0D80,0001D97C#7B*";
+
+    //std::cout << example << std::hex << checksum::get_checksum(example.begin()+1, example.end()-1) << std::endl;
+
+    if (checksum::get_checksum(example.begin()+1, example.end()-1) != 0xAD8A)
+        return 1;
+    }
+
+    //----------------------------------------------------------
+
+    {
+    const std::string_view example = "$SURUN,05,0001D97C#7B*";
+
+    //std::cout << example << std::hex << checksum::get_checksum(example.begin()+1, example.end()-1) << std::endl;
+
+    if (checksum::get_checksum(example.begin()+1, example.end()-1) != 0xCFB2)
+        return 1;
+    }
+
+    return 0;
 }

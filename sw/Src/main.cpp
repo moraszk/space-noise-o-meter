@@ -1,4 +1,5 @@
 #include "gpio.hpp"
+#include "CommandReceiver.hpp"
 
 /*
  * Bootup process:
@@ -22,6 +23,13 @@ int main(void){
 	gpio::init();
 	
 	while(true){
+		if( !CommandReceiver::mrc_ingress_buffer.empty() ) {
+			CommandReceiver::mrc_frame frame = CommandReceiver::mrc_ingress_buffer.get();
+
+			switch(frame.getCommand()){
+
+			}
+		}
 		//to useful stuff
 	}
 }

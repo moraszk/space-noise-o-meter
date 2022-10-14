@@ -83,4 +83,59 @@ namespace utils{
             return ret;
         }
     };
+
+    namespace paramparser{
+        /*
+		size_t getNumberOfParams() const{
+			return std::count(buff.cbegin() + command_offset, buff.cbegin() + this->getSize() - serial_backset, ',');
+		}
+
+		char getParamC (size_t param_num) const {
+			for(const char* i = buff.data()+command_offset; *i != '#'; i++){
+					if (*i == ','){
+						param_num--;
+						if(param_num == 0){
+							return *(i+1);
+						}
+					}
+			}
+			return '\0';
+		}
+
+		uint8_t getParam8 (size_t param_num) const {
+			for(const char* i = buff.data()+command_offset; *i != '#'; i++){
+					if (*i == ','){
+						param_num--;
+						if(param_num == 0){
+							return utils::hex2int<uint8_t>(i+1);
+						}
+					}
+			}
+			return 0;
+		}
+
+		uint16_t getParam16 (size_t param_num) const {
+			for(const char* i = buff.data()+command_offset; *i != '#'; i++){
+					if (*i == ','){
+						param_num--;
+						if(param_num == 0){
+							return utils::hex2int<uint16_t>(i+1);
+						}
+					}
+			}
+			return 0;
+		}
+
+		uint32_t getParam32 (size_t param_num) const {
+			for(const char* i = buff.data()+command_offset; *i != '#'; i++){
+					if (*i == ','){
+						param_num--;
+						if(param_num == 0){
+							return utils::hex2int<uint32_t>(i+1);
+						}
+					}
+			}
+			return 0;
+		}*/
+    }
 }

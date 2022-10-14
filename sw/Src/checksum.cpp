@@ -1,43 +1,38 @@
 #include "checksum.hpp"
 
-uint16_t checksum::fastmod255(uint16_t x)
-{
-  // max( x ) == 510
-  if(x < 255u)
+namespace checksum{
+  uint16_t fastmod255(uint16_t x)
   {
+    // max( x ) == 510
+    if(x < 255u)
+    {
+      return x;
+    }
+    x = x - 255u;
+    if (x < 255u)
+    {
+      return x;
+    }
+    x = x - 255u;
     return x;
   }
-  x = x - 255u;
-  if (x < 255u)
+
+  void fletcher16_update(uint16_t *sum, uint8_t data)
   {
-    return x;
+    sum[0] = fastmod255(sum[0] + (uint16_t) data);
+    sum[1] = fastmod255(sum[1] + sum[0]);
   }
-  x = x - 255u;
-  return x;
+
+  uint16_t fletcher16_get_chksum (uint16_t * sum)
+  {
+    return ((sum[0] & 0x00FF) + ((sum[1] & 0x00FF) << 8u)) ;
+  }
 }
 
-void checksum::fletcher16_init(uint16_t *sum)
-{
-  sum[0] = 0u;
-  sum[1] = 0u;
-}
-
-void checksum::fletcher16_update(uint16_t *sum, uint8_t data)
-{
-  sum[0] = fastmod255(sum[0] + (uint16_t) data);
-  sum[1] = fastmod255(sum[1] + sum[0]);
-}
-
-uint16_t checksum::fletcher16_get_chksum (uint16_t * sum)
-{
-  return ((sum[0] & 0x00FF) + ((sum[1] & 0x00FF) << 8u)) ;
-}
-
-uint16_t checksum::get_checksum(const char* from, const char* const to){
-  uint16_t f16_sum[2];
-  checksum::fletcher16_init(f16_sum);
-  for(; from != to; from++)
-      checksum::fletcher16_update(f16_sum, *from);
+uint16_t checksum::get_checksum(const char* begin, const char* const end){
+  uint16_t f16_sum[2] = {0, 0};
+  for(; begin < end; begin++)
+      checksum::fletcher16_update(f16_sum, *begin);
 
   return checksum::fletcher16_get_chksum(f16_sum);
 }

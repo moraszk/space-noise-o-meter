@@ -2,9 +2,9 @@
 #include "status.hpp"
 #include <cstdio>
 #include "stm32l010x4.h"
+#include "utils.hpp"
 
-CommandReceiver::command last_comm;
-bool last_comm_processed=false;
+utils::ringbuffer<CommandReceiver::mrc_frame, 4> CommandReceiver::mrc_ingress_buffer;
 
 void USART2_IRQHandler(void) {
     static enum class rxsate {WAITNEWPACKET, MIDDLE} state = rxsate::WAITNEWPACKET;
@@ -40,7 +40,7 @@ void USART2_IRQHandler(void) {
                     new_msg_buffer[index++] = received_char;
                     if(received_char == '\n'){
                         state=rxsate::WAITNEWPACKET;
-                        last_comm = CommandReceiver::command{new_msg_buffer, index};
+                        last_comm = CommandReceiver::mrc_frame{new_msg_buffer, index};
                     } else if(index == rx_buffer_size){
                         sat_status.uart.too_long_message++;
                         state=rxsate::WAITNEWPACKET;
