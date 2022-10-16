@@ -26,6 +26,7 @@ namespace CommandReceiver{
 
 		std::array<char,rx_buffer_size> buff;
 		size_t size;
+		unsigned baud;
 	public:
 		mrc_frame(): buff{}, size{0} {}
 
@@ -34,11 +35,31 @@ namespace CommandReceiver{
 			size = copiedbuffend - buff.begin();
 		}
 
-		mrc_frame(const std::array<char,rx_buffer_size>& buff, const size_t size):
-			buff{buff}, size{size} {}
+		mrc_frame(const std::array<char,rx_buffer_size>& buff, const size_t size, uint32_t t1, uint32_t t2):
+			buff{buff}, size{size}
+		{
+			//t's are measured from the \n character rising edge differenecs
+
+			//t1 equals to two baud time
+			//t2 equals to five baud time
+
+			constexpr uint32_t normal_baud_time = 10000000/10000; //AHB Clock per baud
+			constexpr uint32_t t1_normal_value = normal_baud_time * 2;
+			constexpr uint32_t t2_normal_value = normal_baud_time * 5;
+
+			if( std::abs(t2*2 - t1*5) > normal_baud_time){
+				baud = 0;
+			} else {
+				baud = (t1+t2)/ 7;
+			}
+		}
 
 		size_t getSize() const {
 			return size;
+		}
+
+		unsigned getBaud() const {
+			return baud;
 		}
 
 		uint16_t getChecksum() const {

@@ -38,9 +38,17 @@ void USART2_IRQHandler(void) {
                     state = rxsate::MIDDLE;
             case rxsate::MIDDLE:
                     new_msg_buffer[index++] = received_char;
+
+                    if(received_char == '\r') {
+                        //TODO start timer input capture, reset DMA etc.
+                    }
+
                     if(received_char == '\n'){
                         state=rxsate::WAITNEWPACKET;
-                        CommandReceiver::mrc_ingress_buffer.put(CommandReceiver::mrc_frame{new_msg_buffer, index});
+
+                        //Stop timer etc.
+
+                        CommandReceiver::mrc_ingress_buffer.put(CommandReceiver::mrc_frame{new_msg_buffer, index, timer_event[0], timer_event[1]});
                     } else if(index == rx_buffer_size){
                         sat_status.uart.too_long_message++;
                         state=rxsate::WAITNEWPACKET;
