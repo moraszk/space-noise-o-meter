@@ -179,7 +179,7 @@ void gpio::init(){
 			{ .mode= ad, .pull=nopull, .alter=AF0 }, //0  -- HSE
 			{ .mode= ad, .pull=nopull, .alter=AF0 }, //1  -- Half_vref
 			{ .mode= ad, .pull=nopull, .alter=AF0 }, //2  -- Hall_exp
-			{ .mode= ad, .pull=nopull, .alter=AF0 }, //3  -- Capacitor experiment
+			{ .mode= ad, .pull=nopull, .alter=AF0 }, //3  -- Temperature
 			{ .mode= input, .pull=pulldown, .alter=AF0 }, //4  -- NC
 			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //5  -- NC
 			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //6  -- NC

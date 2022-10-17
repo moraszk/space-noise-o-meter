@@ -29,7 +29,7 @@ namespace{
         "Hello",
         "World",
         "Build with the donations of our sponsors: RET Elektronika, Eurocircuits, FDH Kft.",
-        "Outher quotes"
+        "Outher quotesfffdvdddddddddddddddd"
     );
 
     const constexpr size_t datagram_lenght_ascii = 12;
@@ -45,7 +45,7 @@ namespace quotes{
             static size_t quotepartindex = 0;
             utils::base64::encode<12>(nextdatagram, book.begin()+quotepartindex);
 
-            static_assert( (book.size()%datagram_lenght_ascii) != 0, "Overflow when encoding the book");
+            static_assert( (book.size()%datagram_lenght_ascii) == 0, "Overflow when encoding the book");
             quotepartindex+=datagram_lenght_ascii;
             quotepartindex%=book.size();
     }

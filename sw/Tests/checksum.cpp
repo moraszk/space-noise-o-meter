@@ -35,5 +35,16 @@ int main(){
         return 1;
     }
 
+        //----------------------------------------------------------
+
+    {
+    const std::string_view example = "$SURUN,05,0001D97C#7B*";
+
+    //std::cout << example << std::hex << checksum::get_checksum(example.begin()+1, example.end()-1) << std::endl;
+
+    if (checksum::get_checksum(example.begin()+1, 50) != 0xCFB2)
+        return 1;
+    }
+    
     return 0;
 }

@@ -37,3 +37,12 @@ uint16_t checksum::get_checksum(const char* begin, const char* const end){
   return checksum::fletcher16_get_chksum(f16_sum);
 }
 
+uint16_t checksum::get_checksum(const char* begin, uint32_t maximum_len){
+  uint16_t f16_sum[2] = {0, 0};
+  for(;
+      *begin != '*' && maximum_len!=0;
+      begin++, maximum_len--)
+      checksum::fletcher16_update(f16_sum, *begin);
+
+  return checksum::fletcher16_get_chksum(f16_sum);
+}

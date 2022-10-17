@@ -21,6 +21,8 @@ namespace utils{
         return ret;
     }
     
+    const std::array<char, 2>& char2hex(const char in);
+    
     namespace base64{
         std::array<char, 4> encode_triplet(std::uint8_t a, std::uint8_t b, std::uint8_t c);
         

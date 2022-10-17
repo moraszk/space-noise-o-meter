@@ -3,8 +3,9 @@
 #include <cstdio>
 #include "stm32l010x4.h"
 #include "utils.hpp"
+#include "timer.hpp"
 
-utils::ringbuffer<CommandReceiver::mrc_frame, 4> CommandReceiver::mrc_ingress_buffer;
+utils::ringbuffer<CommandReceiver::mrc_frame, mrc_ingress_buffer_len> CommandReceiver::mrc_ingress_buffer;
 
 void USART2_IRQHandler(void) {
     static enum class rxsate {WAITNEWPACKET, MIDDLE} state = rxsate::WAITNEWPACKET;
@@ -48,7 +49,14 @@ void USART2_IRQHandler(void) {
 
                         //Stop timer etc.
 
-                        CommandReceiver::mrc_ingress_buffer.put(CommandReceiver::mrc_frame{new_msg_buffer, index, timer_event[0], timer_event[1]});
+                        CommandReceiver::mrc_ingress_buffer.put(
+                            CommandReceiver::mrc_frame{
+                                new_msg_buffer, 
+                                index, 
+                                timer::timer_capture[1] - timer::timer_capture[0], 
+                                timer::timer_capture[2] - timer::timer_capture[1]
+                            }
+                        );
                     } else if(index == rx_buffer_size){
                         sat_status.uart.too_long_message++;
                         state=rxsate::WAITNEWPACKET;

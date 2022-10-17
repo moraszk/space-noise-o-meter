@@ -21,7 +21,8 @@ void test1(){
     
     if(t1.getSize() != t1str.size()) throw new std::runtime_error("Size error");
     if(t1.getChecksum() != 0xcfb2) throw new std::runtime_error("Checksum error");
-    if(t1.getCommand() != CommandReceiver::Command::SURUN) throw new std::runtime_error("Command error");
+    if(t1.getDestinition() != CommandReceiver::Destinition::SU) throw new std::runtime_error("Dst error");
+    if(t1.getCommand() != CommandReceiver::Command::RUN) throw new std::runtime_error("Command error");
     if(t1.calculate_checksum() != 0xcfb2) throw new std::runtime_error("Checksum error2");
     if(!t1.isValid()) throw new std::runtime_error("Validity check error");
 /*    if(t1.getNumberOfParams() != 3)  throw new std::runtime_error("Param number error");

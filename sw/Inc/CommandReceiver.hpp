@@ -6,21 +6,35 @@
 #include "checksum.hpp"
 #include <cstring>
 #include <algorithm>
+#include <cstdlib>
 
 const constexpr static size_t rx_buffer_size = 64; //TODO recalculate
-const constexpr static size_t command_buffer_len = 4; //TODO recalculate
+const constexpr static size_t mrc_ingress_buffer_len = 4; //TODO recalculate
 
 namespace CommandReceiver{
 	enum class Command {
-		SURUN,
-		SUOFF,
-		SURQT,
-		SUCMD,
+		RUN,
+		OFF,
+		RQT,
+		CMD,
+		ACK,
+		TEL,
 		UNKNOWN
+	};
+	
+	enum class Destinition : uint8_t {
+		SU = 0,
+		DE = 1,
+		GY = 2,
+		SZ = 3,
+		OBU = 4,
+		OBC = 5,
+		UNKNOWN =6 
 	};
 
 	class mrc_frame {
-		const constexpr static size_t command_offset = 1;
+		const constexpr static size_t dst_offset = 1;
+		const constexpr static size_t command_offset = 3;
 		const constexpr static size_t checksum_backset = 6;
 		const constexpr static size_t serial_backset = 9;
 
@@ -46,8 +60,9 @@ namespace CommandReceiver{
 			constexpr uint32_t normal_baud_time = 10000000/10000; //AHB Clock per baud
 			constexpr uint32_t t1_normal_value = normal_baud_time * 2;
 			constexpr uint32_t t2_normal_value = normal_baud_time * 5;
+			constexpr uint32_t allowed_error = normal_baud_time * 0.03 * 7;
 
-			if( std::abs(t2*2 - t1*5) > normal_baud_time){
+			if( ( (t2*2) > (t1*5) + allowed_error ) || ( (t2*2) < (t1*5) - allowed_error ) ){
 				baud = 0;
 			} else {
 				baud = (t1+t2)/ 7;
@@ -66,14 +81,32 @@ namespace CommandReceiver{
 			return utils::hex2int<uint16_t>(buff.data() + size - checksum_backset);
 		}
 
+		CommandReceiver::Destinition getDestinition() const {
+			if (__builtin_strncmp(buff.data()+dst_offset, "SU", 2) == 0) return CommandReceiver::Destinition::SU;
+			else
+			if (__builtin_strncmp(buff.data()+dst_offset, "DE", 2) == 0) return CommandReceiver::Destinition::DE;
+			else
+			if (__builtin_strncmp(buff.data()+dst_offset, "GY", 2) == 0) return CommandReceiver::Destinition::GY;
+			else
+			if (__builtin_strncmp(buff.data()+dst_offset, "SZ", 2) == 0) return CommandReceiver::Destinition::SZ;
+			else
+			if (__builtin_strncmp(buff.data()+dst_offset, "OB", 2) == 0) return CommandReceiver::Destinition::OBU;
+			else
+			return CommandReceiver::Destinition::UNKNOWN;
+		}
+		
 		CommandReceiver::Command getCommand() const {
-			if (strncmp(buff.data()+command_offset, "SURUN", 5) == 0) return CommandReceiver::Command::SURUN;
+			if (__builtin_strncmp(buff.data()+command_offset, "RQT", 3) == 0) return CommandReceiver::Command::RQT;
 			else
-			if (strncmp(buff.data()+command_offset, "SUOFF", 5) == 0) return CommandReceiver::Command::SUOFF;
+			if (__builtin_strncmp(buff.data()+command_offset, "TEL", 3) == 0) return CommandReceiver::Command::TEL;
 			else
-			if (strncmp(buff.data()+command_offset, "SURQT", 5) == 0) return CommandReceiver::Command::SURQT;
+			if (__builtin_strncmp(buff.data()+command_offset, "RUN", 3) == 0) return CommandReceiver::Command::RUN;
 			else
-			if (strncmp(buff.data()+command_offset, "SUCMD", 5) == 0) return CommandReceiver::Command::SUCMD;
+			if (__builtin_strncmp(buff.data()+command_offset, "CMD", 3) == 0) return CommandReceiver::Command::CMD;
+			else
+			if (__builtin_strncmp(buff.data()+command_offset, "ACK", 3) == 0) return CommandReceiver::Command::ACK;
+			else
+			if (__builtin_strncmp(buff.data()+command_offset, "OFF", 3) == 0) return CommandReceiver::Command::OFF;
 			else
 			return CommandReceiver::Command::UNKNOWN;
 		}
@@ -106,7 +139,11 @@ namespace CommandReceiver{
 		uint8_t getSerial() const {
 			return utils::hex2int<uint8_t>(buff.data()+size-serial_backset);
 		}
+		
+		const char * getSerialStr() const {
+			return buff.data()+size-serial_backset;
+		}
 	};
 
-	extern utils::ringbuffer<CommandReceiver::mrc_frame, 4> mrc_ingress_buffer;
+	extern utils::ringbuffer<CommandReceiver::mrc_frame, mrc_ingress_buffer_len> mrc_ingress_buffer;
 }

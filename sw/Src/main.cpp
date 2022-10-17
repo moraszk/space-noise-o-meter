@@ -1,5 +1,7 @@
 #include "gpio.hpp"
 #include "CommandReceiver.hpp"
+#include "command_sender.hpp"
+#include "status.hpp"
 
 /*
  * Bootup process:
@@ -26,8 +28,46 @@ int main(void){
 		if( !CommandReceiver::mrc_ingress_buffer.empty() ) {
 			CommandReceiver::mrc_frame frame = CommandReceiver::mrc_ingress_buffer.get();
 
-			switch(frame.getCommand()){
-
+			if(frame.isValid() && frame.getBaud() != 0){} //TODO to be inserted
+			
+			if(frame.getDestinition() == CommandReceiver::Destinition::SU){
+				switch(frame.getCommand()){
+					case CommandReceiver::Command::RUN:
+						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT)
+							sat_status.experiment = sat_stat::experiment::ADC_NOISE;
+						command_sender::sendack(frame.getSerial());
+						break;
+					case CommandReceiver::Command::OFF:
+						sat_status.experiment = sat_stat::experiment::NO_EXPERIMENT;
+						command_sender::sendack(frame.getSerial());
+						break;
+					case CommandReceiver::Command::CMD:
+						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT){
+							sat_status.communication.command_without_run++;
+							break;
+						}
+						//TODO parse command
+					case CommandReceiver::Command::RQT:
+						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT){
+							sat_status.communication.command_without_run++;
+							break;
+						}
+						//TODO encapsulate telemetry
+					default:
+						sat_status.communication.unknown_command++;
+				}
+			} else {
+				switch(frame.getCommand()){
+					case CommandReceiver::Command::ACK:
+					case CommandReceiver::Command::TEL:
+						frame.getDestinition();
+						frame.getBaud();
+						//from other modules, save baud to register
+						break;
+					default:
+						//from OBS, save baud to register
+						frame.getBaud();
+				}
 			}
 		}
 		//to useful stuff

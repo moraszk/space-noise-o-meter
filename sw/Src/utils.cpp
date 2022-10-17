@@ -4,10 +4,38 @@
 #include <numeric>
 #include <string_view>
 #include <array>
+#include <algorithm>
 
 namespace{
     std::string_view constexpr encode_table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-";
     static_assert(encode_table.size() == 64, "Base64 lookup table not 64 long");
+    
+    consteval std::array<char, 2> byte2hex(int in){
+        const constexpr std::string_view hex_values = "0123456789abcdef";
+        static_assert(hex_values.size() == 16, "Bad hex lookup-table");
+        
+        return {
+            hex_values.at(in / 16)
+            ,
+            hex_values.at(in % 16)
+        };
+    }
+    
+    static_assert(byte2hex(10)[0]=='0' && byte2hex(10)[1]=='a', "Byte2hex test failed");
+    static_assert(byte2hex(0x1b)[0]=='1' && byte2hex(0x1b)[1]=='b', "Byte2hex test failed");
+    static_assert(byte2hex(0xb0)[0]=='b' && byte2hex(0xb0)[1]=='0', "Byte2hex test failed");
+    
+    consteval std::array<std::array<char, 2>, 256> lookup_generator(){
+        std::array<std::array<char, 2>, 256> ret = {{}};
+        for(size_t i = 0; i < 256; i++){
+            ret[i] = byte2hex(i);
+        }
+        return ret;
+    }
+    
+    constexpr std::array<std::array<char, 2>, 256> hex_lookup = lookup_generator();
+    
+    static_assert(hex_lookup[10].data()[0] == '0' && hex_lookup[10].data()[1 == 'a'], "Hex test failed");
 }
 
 //Source: https://matgomes.com/base64-encode-decode-cpp/
@@ -19,4 +47,8 @@ std::array<char, 4> utils::base64::encode_triplet(std::uint8_t a, std::uint8_t b
     auto const b64_char3 = encode_table[(concat_bits >> 6) & 0b0011'1111];
     auto const b64_char4 = encode_table[concat_bits & 0b0011'1111];
     return {b64_char1, b64_char2, b64_char3, b64_char4};
+}
+
+const std::array<char, 2>& utils::char2hex(const char in){
+    return hex_lookup[in];
 }

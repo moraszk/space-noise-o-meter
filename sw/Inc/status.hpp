@@ -22,6 +22,20 @@ public:
         uint16_t too_long_message;
         uint16_t midpacket_char;
     } uart;
+    
+    struct {
+        uint8_t command_without_run;
+        uint8_t unknown_command;
+    } communication;
+    
+    enum class experiment : uint8_t{
+        NO_EXPERIMENT = 0,
+        ADC_NOISE,
+        UART_RATES,
+        QUOTES,
+        TEMP,
+        HALL
+    } experiment;
 };
 
 extern struct sat_stat sat_status;
