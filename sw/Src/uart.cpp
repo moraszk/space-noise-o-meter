@@ -8,7 +8,7 @@ void uart::send_buffer(const char* begin, const char* end){
     }
 }
 
-void uart::init_uart()
+void uart::init()
 {
 
 	RCC->APB1ENR = RCC_APB1ENR_USART2EN; //enable usart2 clock

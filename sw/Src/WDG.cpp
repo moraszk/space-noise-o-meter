@@ -1,4 +1,6 @@
-void wdg()
+#include "watchdog.hpp"
+
+void wdg::init()
 {
  
 		//1. Enable the IWDG by writing 0x0000 CCCC in the IWDG key register (IWDG_KR)

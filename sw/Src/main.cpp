@@ -2,6 +2,8 @@
 #include "CommandReceiver.hpp"
 #include "command_sender.hpp"
 #include "status.hpp"
+#include "watchdog.hpp"
+#include "uart.hpp"
 
 /*
  * Bootup process:
@@ -23,6 +25,9 @@
 
 int main(void){
 	gpio::init();
+	wdg::init();
+	uart::init();
+	
 	
 	while(true){
 		if( !CommandReceiver::mrc_ingress_buffer.empty() ) {
