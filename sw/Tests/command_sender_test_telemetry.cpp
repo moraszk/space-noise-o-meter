@@ -33,22 +33,25 @@ int main(){
     
     char serial[] = "FF";
     
-    command_sender::sendtel(serial);
-    
     /*std::cout << test << std::endl;
     for(char c: test){
         std::cout << utils::char2hex(c)[0] << utils::char2hex(c)[1] << ' ';
     }
     std::cout << std::endl;*/
     
-    if (test != "$SUTEL,MgAAAAAAAAAAAAAA#FF*17B0\r\n")
-        return -1;
-    
-    for(int i = 0; i< sat_stat__number_of_chunks;i++)
+    //          ,------the chunk counter starts from 1
+    for(int i = 1; i< sat_stat__number_of_chunks;i++)
         command_sender::sendtel(serial);
     
+    command_sender::sendtel(serial);
+    //std::cout << test << std::endl;
     if (test != "$SUTEL,MgAAAAAAAAAAAAAA#FF*17B0\r\n")
         return -1;
     
+    command_sender::sendtel(serial);
+    //std::cout << test << std::endl;
+    if (test == "$SUTEL,MgAAAAAAAAAAAAAA#FF*17B0\r\n")
+        return -1;
+        
     return 0;
 }

@@ -41,6 +41,7 @@ namespace command_sender{
     
     void sendtel(const char* serial_str){
         static size_t chunk_id [[gnu::section(".noinit")]];
+        chunk_id++;
         
         const unsigned char * begin;
         std::array<char, 16> payload;
