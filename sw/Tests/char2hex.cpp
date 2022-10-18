@@ -12,9 +12,9 @@ int main(){
     }*/
     
     if (strncmp(utils::char2hex(0x00).data(), "00", 2) != 0) return 2;
-    if (strncmp(utils::char2hex(0x0a).data(), "0a", 2) != 0) return 3;
-    if (strncmp(utils::char2hex(0xb0).data(), "b0", 2) != 0) return 4;
-    if (strncmp(utils::char2hex(0xff).data(), "ff", 2) != 0) return 5;
+    if (strncmp(utils::char2hex(0x0a).data(), "0A", 2) != 0) return 3;
+    if (strncmp(utils::char2hex(0xb0).data(), "B0", 2) != 0) return 4;
+    if (strncmp(utils::char2hex(0xff).data(), "FF", 2) != 0) return 5;
     
     return 0;
 }
