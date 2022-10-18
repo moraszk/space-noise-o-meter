@@ -4,6 +4,7 @@
 
 namespace adc{
 	
-	void init_measure();
+	void init_noise();
 	void init_hall_sensor();
+	void init_temp();
 	}
