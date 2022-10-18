@@ -30,17 +30,7 @@ namespace utils{
 
     const std::array<char, 2>& char2hex(const unsigned char in);
 
-    void copyashex(const uint16_t number, char* begin){
-        auto secondbyte = char2hex(number&0xff);
-        auto firstbyte  = char2hex(number>>8);
-        *begin = firstbyte[0];
-        begin++;
-        *begin = firstbyte[1];
-        begin++;
-        *begin = secondbyte[0];
-        begin++;
-        *begin = secondbyte[1];
-    }
+    void copyashex(const uint16_t number, char* begin);
 
     namespace base64{
         std::array<char, 4> encode_triplet(std::uint8_t a, std::uint8_t b, std::uint8_t c);
