@@ -32,10 +32,10 @@ union meas_mem_type{
             if(dst_id>=5)
                 return; //TODO status metric?
             
-            auto& hist = histograms[dst_id];
-            if(baud_error > histogram_width)
+            if(baud_bin_index > histogram_width)
                 return; //TODO status metric?
             
+            auto& hist = histograms[dst_id];
             hist[baud_bin_index]++;
         }
     } baud_rate;

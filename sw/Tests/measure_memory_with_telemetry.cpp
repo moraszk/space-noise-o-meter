@@ -30,28 +30,28 @@ void uart::send_buffer(const char* begin, const char* end){
 
 int main(){
     sat_status.bootnum=50;
+    sat_status.experiment=sat_stat::experiment::UART_RATES;
     
     char serial[] = "FF";
     
-    /*std::cout << test << std::endl;
-    for(char c: test){
-        std::cout << utils::char2hex(c)[0] << utils::char2hex(c)[1] << ' ';
-    }
-    std::cout << std::endl;*/
+    command_sender::sendtel(serial);
     
     //          ,------the chunk counter starts from 1
     for(int i = 1; i< sat_stat__number_of_chunks;i++)
         command_sender::sendtel(serial);
     
-    command_sender::sendtel(serial);
-    //std::cout << test << std::endl;
-    if (test != "$SUTEL,00MgAAAAAAAAAAAAAA#FF*4411\r\n")
-        return -1;
+    //Now we are adter the sat_stat telemetries
     
-    command_sender::sendtel(serial);
-    //std::cout << test << std::endl;
-    if (test == "$SUTEL,00MgAAAAAAAAAAAAAA#FF*4411\r\n")
-        return -1;
-        
+    measure_memory.baud_rate.register_measure(Destinition::OBC, 0);
+    measure_memory.baud_rate.register_measure(Destinition::OBC, 1);
+    measure_memory.baud_rate.register_measure(Destinition::OBC, 2);
+    measure_memory.baud_rate.register_measure(Destinition::OBC, 3);
+    measure_memory.baud_rate.register_measure(Destinition::OBC, 4);
+    
+    for(int i=0;i<60;i++){
+        command_sender::sendtel(serial);
+        std::cout << test;
+    }
+    
     return 0;
 }
