@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <utils.hpp>
 
-	enum class Destinition : uint8_t {
+	enum class Destinition : uint8_t { //TODO rebase to external header, !!!!!!enum duplication!!!!!!
 		DE = 1,
 		GY = 2,
 		SZ = 3,

@@ -40,11 +40,11 @@ int main(void){
 					case CommandReceiver::Command::RUN:
 						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT)
 							sat_status.experiment = sat_stat::experiment::ADC_NOISE;
-						command_sender::sendack(frame.getSerial());
+						command_sender::sendack(frame.getSerialStr());
 						break;
 					case CommandReceiver::Command::OFF:
 						sat_status.experiment = sat_stat::experiment::NO_EXPERIMENT;
-						command_sender::sendack(frame.getSerial());
+						command_sender::sendack(frame.getSerialStr());
 						break;
 					case CommandReceiver::Command::CMD:
 						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT){
@@ -57,7 +57,7 @@ int main(void){
 							sat_status.communication.command_without_run++;
 							break;
 						}
-						//TODO encapsulate telemetry
+						command_sender::sendtel(frame.getSerialStr());
 					default:
 						sat_status.communication.unknown_command++;
 				}
