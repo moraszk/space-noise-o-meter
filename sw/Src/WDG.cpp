@@ -1,4 +1,5 @@
 #include "watchdog.hpp"
+#include "stm32l010x4.h"
 
 void wdg::init()
 {

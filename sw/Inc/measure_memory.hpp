@@ -3,16 +3,7 @@
 #include <array>
 #include <cstdint>
 #include <utils.hpp>
-
-	enum class Destinition : uint8_t { //TODO rebase to external header, !!!!!!enum duplication!!!!!!
-		DE = 1,
-		GY = 2,
-		SZ = 3,
-		OBU = 4,
-		OBC = 0,
-		UNKNOWN =5,
-		SU = 6,
-	};
+#include "command.hpp"
 
 union meas_mem_type{
     std::array<unsigned char, 1024> raw_content;
@@ -25,7 +16,7 @@ union meas_mem_type{
         using histogram = std::array<uint16_t, histogram_width>;
         std::array<histogram, 5> histograms; //TODO change 5 to number of other modules on the bus;
     public:
-        void register_measure(Destinition dst, int16_t baud_error){            
+        void register_measure(command::Destinition dst, int16_t baud_error){            
             const uint8_t dst_id = static_cast<uint8_t>(dst);
             const uint16_t baud_bin_index = baud_error + (histogram_width/2);
             

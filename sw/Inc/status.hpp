@@ -31,6 +31,8 @@ public:
         uint16_t idle;
     } uart;
     
+    uint8_t clock;
+    
     struct {
         uint8_t command_without_run : 4;
         uint8_t unknown_command : 4;

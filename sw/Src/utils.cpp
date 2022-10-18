@@ -52,3 +52,15 @@ std::array<char, 4> utils::base64::encode_triplet(std::uint8_t a, std::uint8_t b
 const std::array<char, 2>& utils::char2hex(const unsigned char in){
     return hex_lookup[in];
 }
+
+void utils::copyashex(const uint16_t number, char* begin){
+        auto secondbyte = char2hex(number&0xff);
+        auto firstbyte  = char2hex(number>>8);
+        *begin = firstbyte[0];
+        begin++;
+        *begin = firstbyte[1];
+        begin++;
+        *begin = secondbyte[0];
+        begin++;
+        *begin = secondbyte[1];
+    }

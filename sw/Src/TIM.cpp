@@ -1,4 +1,4 @@
-
+#include "stm32l010x4.h"
 void TIM2_Init(void)
 {		
 		RCC->APB1ENR = RCC_APB1ENR_TIM2EN;  //enable TIM2 clock

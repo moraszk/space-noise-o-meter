@@ -35,7 +35,7 @@ int main(void){
 
 			if(frame.isValid() && frame.getBaud() != 0){} //TODO to be inserted
 			
-			if(frame.getDestinition() == CommandReceiver::Destinition::SU){
+			if(frame.getDestinition() == command::Destinition::SU){
 				switch(frame.getCommand()){
 					case CommandReceiver::Command::RUN:
 						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT)
@@ -75,7 +75,8 @@ int main(void){
 				}
 			}
 		}
-		//to useful stuff
+		
+		sat_status.clock = gpio::oscillator::get();
 	}
 	wdg::refresh();
 }

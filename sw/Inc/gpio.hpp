@@ -23,9 +23,9 @@ namespace gpio{
 	namespace oscillator {
 		constexpr const static uint8_t pin = 15;
 		
-		enum class stat{
-			PRIMARY,
-			SECONDARY
+		enum stat : uint8_t{
+			PRIMARY = 0,
+			SECONDARY = 1
 		};
 
 		inline stat static get(){

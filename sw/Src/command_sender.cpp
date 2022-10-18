@@ -9,5 +9,5 @@
 #include "quotes.hpp"
 
 namespace command_sender{    
-    std::array<char, longest_reply.size() + 1> output_buffer; //+1 for the closing zero in C. Just to be safe....
+    std::array<char, command::longest_reply.size() + 1> output_buffer; //+1 for the closing zero in C. Just to be safe....
 }
