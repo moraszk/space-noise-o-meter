@@ -44,7 +44,11 @@ int main(){
     if (test != "$SUTEL,MgAAAAAAAAAAAAAA#FF*17B0\r\n")
         return -1;
     
+    for(int i = 0; i< sat_stat__number_of_chunks;i++)
+        command_sender::sendtel(serial);
     
+    if (test != "$SUTEL,MgAAAAAAAAAAAAAA#FF*17B0\r\n")
+        return -1;
     
     return 0;
 }
