@@ -1,6 +1,10 @@
 #include "stm32l010x4.h"
 
+extern "C" void SystemClock_Config(void);
+
 void SystemClock_Config(void){
+	RCC->CIER = 0x00000000; //Turn off every interrupt
+	
 	FLASH->ACR = FLASH_ACR_LATENCY_Pos; //One wait state flash
 
 	//wait until the flash latency is 1

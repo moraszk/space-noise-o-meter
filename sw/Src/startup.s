@@ -104,7 +104,7 @@ LoopFillZerobss:
   bcc FillZerobss
 
 /* Call the clock system intitialization function.*/
-  bl  SystemInit
+  bl  SystemClock_Config
 /* Call static constructors */
     bl __libc_init_array
 /* Call the application's entry point.*/

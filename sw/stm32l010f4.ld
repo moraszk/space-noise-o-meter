@@ -138,7 +138,8 @@ SECTIONS
     __bss_end__ = _ebss;
   } >RAM
 
-  .noinit:
+  . = ALIGN(4);
+  .noinit :
   {
     . = ALIGN(4);
     *(.noinit)
