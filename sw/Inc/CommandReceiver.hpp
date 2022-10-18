@@ -7,9 +7,10 @@
 #include <cstring>
 #include <algorithm>
 #include <cstdlib>
+#include "command.hpp"
 
-const constexpr static size_t rx_buffer_size = 64; //TODO recalculate
-const constexpr static size_t mrc_ingress_buffer_len = 4; //TODO recalculate
+const constexpr static size_t rx_buffer_size = command::longest_reply.size() + 1;
+const constexpr static size_t mrc_ingress_buffer_len = 4;
 
 namespace CommandReceiver{
 	enum class Command {
@@ -20,16 +21,6 @@ namespace CommandReceiver{
 		ACK,
 		TEL,
 		UNKNOWN
-	};
-	
-	enum class Destinition : uint8_t {
-		DE = 1,
-		GY = 2,
-		SZ = 3,
-		OBU = 4,
-		OBC = 0,
-		UNKNOWN =5,
-		SU = 6,
 	};
 
 	class mrc_frame {
@@ -81,18 +72,18 @@ namespace CommandReceiver{
 			return utils::hex2int<uint16_t>(buff.data() + size - checksum_backset);
 		}
 
-		CommandReceiver::Destinition getDestinition() const {
-			if (__builtin_strncmp(buff.data()+dst_offset, "SU", 2) == 0) return CommandReceiver::Destinition::SU;
+		command::Destinition getDestinition() const {
+			if (__builtin_strncmp(buff.data()+dst_offset, "SU", 2) == 0) return command::Destinition::SU;
 			else
-			if (__builtin_strncmp(buff.data()+dst_offset, "DE", 2) == 0) return CommandReceiver::Destinition::DE;
+			if (__builtin_strncmp(buff.data()+dst_offset, "DE", 2) == 0) return command::Destinition::DE;
 			else
-			if (__builtin_strncmp(buff.data()+dst_offset, "GY", 2) == 0) return CommandReceiver::Destinition::GY;
+			if (__builtin_strncmp(buff.data()+dst_offset, "GY", 2) == 0) return command::Destinition::GY;
 			else
-			if (__builtin_strncmp(buff.data()+dst_offset, "SZ", 2) == 0) return CommandReceiver::Destinition::SZ;
+			if (__builtin_strncmp(buff.data()+dst_offset, "SZ", 2) == 0) return command::Destinition::SZ;
 			else
-			if (__builtin_strncmp(buff.data()+dst_offset, "OB", 2) == 0) return CommandReceiver::Destinition::OBU;
+			if (__builtin_strncmp(buff.data()+dst_offset, "OB", 2) == 0) return command::Destinition::OBU;
 			else
-			return CommandReceiver::Destinition::UNKNOWN;
+			return command::Destinition::UNKNOWN;
 		}
 		
 		CommandReceiver::Command getCommand() const {
