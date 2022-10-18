@@ -15,6 +15,7 @@
 
 union meas_mem_type{
     std::array<unsigned char, 1024> raw_content;
+    static constexpr const std::size_t chunk_size = 12;
     
     class baud_measure_class{
         static const constexpr std::size_t histogram_width = 100;
@@ -54,6 +55,10 @@ union meas_mem_type{
     
     void zero(){
         __builtin_bzero(this, sizeof(decltype(*this)));
+    }
+    
+    const unsigned char* get_chunk_begin(std::size_t chunk){
+        return &raw_content[chunk*chunk_size];
     }
 };
 
