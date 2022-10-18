@@ -36,7 +36,7 @@ sw/main.elf: $(OBJECTS)
 clean:
 	find sw -name "*o" -delete
 	find sw -executable -type f -delete
-	
+
 ####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####
 
 sw/Tests/%: sw/Tests/%.cpp
@@ -51,4 +51,16 @@ tests: $(tests)
                 ./$$i || echo -n "         FAIL                     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"; echo "";\
         done
 
-.PHONY: tests clean
+sw/FuzzTests/%: sw/FuzzTests/%.cpp
+	@echo "[CLANG]    $(notdir $<)"
+	@clang++ -g -std=c++20 -fsanitize=fuzzer,signed-integer-overflow,memory $^ -o $@ -I sw/FuzzTests -I sw/Inc -I sw/Src
+
+fuzztests = $(basename $(wildcard sw/FuzzTests/*cpp))
+
+fuzztests: $(fuzztests)
+	@for i in $^ ; do \
+                echo -n "Running fuzztest" $$i; \
+                ./$$i CORPUS;\
+        done
+
+.PHONY: tests clean fuzztests

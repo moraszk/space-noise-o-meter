@@ -1,0 +1,4 @@
+CORPUS/*
+!CORPUS/.*
+!CORPUS/*.*
+crash-*
