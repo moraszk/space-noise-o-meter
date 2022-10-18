@@ -5,6 +5,13 @@
 #include <iterator>
 
 namespace utils{
+    consteval std::size_t round_up(std::size_t whole, std::size_t partlen){
+        if(whole % partlen == 0)
+            return whole/partlen;
+        else
+            return whole/partlen +1;
+    }
+    
     template<std::integral T>
     constexpr auto hex2int(const char* const in) -> T{
         T ret = 0;

@@ -41,7 +41,7 @@ clean:
 
 sw/Tests/%: sw/Tests/%.cpp
 	@echo "[CXX]    $(notdir $<)"
-	@g++ -std=c++20 $^ -o $@ -I sw/Tests -I sw/Inc -I sw/Src
+	@g++ -std=c++20 $^ -o $@ -I sw/Tests -I sw/Inc -I sw/Src -g3
 
 tests = $(basename $(wildcard sw/Tests/*cpp))
 

@@ -11,7 +11,7 @@ namespace{
     static_assert(encode_table.size() == 64, "Base64 lookup table not 64 long");
     
     consteval std::array<char, 2> byte2hex(int in){
-        const constexpr std::string_view hex_values = "0123456789abcdef";
+        const constexpr std::string_view hex_values = "0123456789ABCDEF";
         static_assert(hex_values.size() == 16, "Bad hex lookup-table");
         
         return {
@@ -21,9 +21,9 @@ namespace{
         };
     }
     
-    static_assert(byte2hex(10)[0]=='0' && byte2hex(10)[1]=='a', "Byte2hex test failed");
-    static_assert(byte2hex(0x1b)[0]=='1' && byte2hex(0x1b)[1]=='b', "Byte2hex test failed");
-    static_assert(byte2hex(0xb0)[0]=='b' && byte2hex(0xb0)[1]=='0', "Byte2hex test failed");
+    static_assert(byte2hex(10)[0]=='0' && byte2hex(10)[1]=='A', "Byte2hex test failed");
+    static_assert(byte2hex(0x1b)[0]=='1' && byte2hex(0x1b)[1]=='B', "Byte2hex test failed");
+    static_assert(byte2hex(0xb0)[0]=='B' && byte2hex(0xb0)[1]=='0', "Byte2hex test failed");
     
     consteval std::array<std::array<char, 2>, 256> lookup_generator(){
         std::array<std::array<char, 2>, 256> ret = {{}};
@@ -35,7 +35,7 @@ namespace{
     
     constexpr std::array<std::array<char, 2>, 256> hex_lookup = lookup_generator(); //TODO constinit?
     
-    static_assert(hex_lookup[10].data()[0] == '0' && hex_lookup[10].data()[1 == 'a'], "Hex test failed");
+    static_assert(hex_lookup[10].data()[0] == '0' && hex_lookup[10].data()[1 == 'A'], "Hex test failed");
 }
 
 //Source: https://matgomes.com/base64-encode-decode-cpp/

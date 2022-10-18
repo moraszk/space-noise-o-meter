@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <string_view>
 #include "utils.hpp"
+#include "quotes.hpp"
 
 using namespace std::literals;
 
@@ -39,14 +40,9 @@ namespace{
 }
 
 namespace quotes{
-    static std::array<char, 16> nextdatagram;
-    
-    void CalculateNextDatagram(){
-            static size_t quotepartindex = 0;
-            utils::base64::encode<12>(nextdatagram, book.begin()+quotepartindex);
-
-            static_assert( (book.size()%datagram_lenght_ascii) == 0, "Overflow when encoding the book");
-            quotepartindex+=datagram_lenght_ascii;
-            quotepartindex%=book.size();
+    unsigned char* get_chunk(std::size_t chunk){
+        return (unsigned char *)&book[chunk*datagram_lenght_ascii];
     }
+    
+    constinit std::size_t number_of_chunks = utils::round_up(book.size(), datagram_lenght_ascii);
 }
