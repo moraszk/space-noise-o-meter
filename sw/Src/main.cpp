@@ -77,4 +77,5 @@ int main(void){
 		}
 		//to useful stuff
 	}
+	wdg::refresh();
 }

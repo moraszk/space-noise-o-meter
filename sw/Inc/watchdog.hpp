@@ -4,5 +4,5 @@
 namespace wdg
 {
 	void init();
-
+	void refresh();
 }

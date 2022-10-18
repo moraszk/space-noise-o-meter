@@ -25,3 +25,9 @@ void wdg::init()
 		IWDG->KR = 0x4F << IWDG_KR_KEY_Pos;
 		
 }
+
+void wdg::refresh()
+{
+	IWDG->KR = 0xAAAA << IWDG_KR_KEY_Pos;
+}
+
