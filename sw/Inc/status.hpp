@@ -1,5 +1,9 @@
 #pragma once
 #include <cstdint>
+#include "utils.hpp"
+
+struct sat_stat;
+extern struct sat_stat sat_status;
 
 struct sat_stat{
 private:
@@ -41,23 +45,14 @@ public:
         HALL
     } experiment;
         
-    //! Dumps what is above to a base64 string
-    // @param begin: the string where the result should be dumped
-    // @return end: a pointer pointing after the last char
-    char* dump(char* begin, uint8_t chunkid);
+    const unsigned char * getchunk(const std::size_t chunk){
+        unsigned char* begin_data = reinterpret_cast<unsigned char*>(&sat_status.bootnum);
+        return begin_data + (chunk_length*chunk);
+    }
 };
 
-extern struct sat_stat sat_status;
-
-
-consteval size_t round_up(size_t whole, size_t partlen){
-    if(whole % partlen == 0)
-        return whole/partlen;
-    else
-        return whole/partlen +1;
-}
-static const constexpr std::size_t sat_status:number_of_chunks = 
-    round_up(
+const constinit std::size_t sat_stat__number_of_chunks = 
+    utils::round_up(
         (sizeof(sat_stat)-sizeof(uint64_t)), 
-        sat_status::chunk_length
+        sat_stat::chunk_length
     );

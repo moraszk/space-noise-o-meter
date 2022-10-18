@@ -2,6 +2,7 @@
 
 #include <array>
 #include <cstdint>
+#include <utils.hpp>
 
 	enum class Destinition : uint8_t {
 		DE = 1,
@@ -16,6 +17,7 @@
 union meas_mem_type{
     std::array<unsigned char, 1024> raw_content;
     static constexpr const std::size_t chunk_size = 12;
+    static constexpr const std::size_t number_of_chunks = utils::round_up(1024, 12);
     
     class baud_measure_class{
         static const constexpr std::size_t histogram_width = 100;
