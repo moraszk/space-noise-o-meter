@@ -1,8 +1,9 @@
 #include "command_sender.hpp"
-#include "stm32l010x4.h"
 #include <string_view>
 #include <array>
 #include "checksum.hpp"
+#include "uart.hpp"
+#include "utils.hpp"
 
 namespace{
     const constexpr std::string_view longest_reply = "$SUTEL,1234567890123456789#00*1234\r\n";
@@ -27,8 +28,15 @@ namespace command_sender{
             output_buffer.begin()+ack_heading.size()+2
         );
         
+        utils::copyashex(checksum, &output_buffer[ack_heading.size()+3]);
         
+        output_buffer[ack_heading.size()+7] = '\r';
+        output_buffer[ack_heading.size()+8] = '\n';
+        
+        uart::send_buffer(output_buffer.data(), output_buffer.data()+ack_heading.size()+9);
     }
     
-    void sendtel(uint8_t serial, const char* payload, uint8_t payload_length);
+    void sendtel(uint8_t serial, const char* payload, uint8_t payload_length){
+        
+    }
 }

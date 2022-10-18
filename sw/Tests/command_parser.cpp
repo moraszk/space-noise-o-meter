@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <iostream>
 #include "../Src/checksum.cpp"
+#include "../Src/utils.cpp"
 
 #define class struct
 

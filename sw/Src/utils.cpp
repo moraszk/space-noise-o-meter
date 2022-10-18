@@ -33,7 +33,7 @@ namespace{
         return ret;
     }
     
-    constexpr std::array<std::array<char, 2>, 256> hex_lookup = lookup_generator();
+    constexpr std::array<std::array<char, 2>, 256> hex_lookup = lookup_generator(); //TODO constinit?
     
     static_assert(hex_lookup[10].data()[0] == '0' && hex_lookup[10].data()[1 == 'a'], "Hex test failed");
 }
@@ -49,6 +49,6 @@ std::array<char, 4> utils::base64::encode_triplet(std::uint8_t a, std::uint8_t b
     return {b64_char1, b64_char2, b64_char3, b64_char4};
 }
 
-const std::array<char, 2>& utils::char2hex(const char in){
+const std::array<char, 2>& utils::char2hex(const unsigned char in){
     return hex_lookup[in];
 }

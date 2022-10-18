@@ -1,6 +1,7 @@
 #include <cstdint>
 #include <iostream>
 #include "utils.hpp"
+#include "../Src/utils.cpp"
 
 int main(){
 	if (utils::hex2int<uint8_t>("ff") != 0xff) return -1;

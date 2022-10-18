@@ -1,6 +1,7 @@
 #include <array>
 #include <cstdint>
 #include "utils.hpp"
+#include "../Src/utils.cpp"
 
 int main(){
     utils::ringbuffer<uint8_t, 5> rb;

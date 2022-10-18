@@ -23,13 +23,13 @@ namespace CommandReceiver{
 	};
 	
 	enum class Destinition : uint8_t {
-		SU = 0,
 		DE = 1,
 		GY = 2,
 		SZ = 3,
 		OBU = 4,
-		OBC = 5,
-		UNKNOWN =6 
+		OBC = 0,
+		UNKNOWN =5,
+		SU = 6,
 	};
 
 	class mrc_frame {
