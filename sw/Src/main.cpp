@@ -78,4 +78,5 @@ int main(void){
 		
 		sat_status.clock = gpio::oscillator::get();
 	}
+	wdg::refresh();
 }
