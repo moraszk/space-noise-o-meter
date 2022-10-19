@@ -2,5 +2,5 @@
 #include <cstdint>
 
 namespace timer{
-    extern uint32_t timer_capture[3];
+    extern uint16_t timer_capture[3];
 }

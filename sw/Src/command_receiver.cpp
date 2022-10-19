@@ -49,14 +49,17 @@ void USART2_IRQHandler(void) {
 
                         //Stop timer etc.
 
-                        CommandReceiver::mrc_ingress_buffer.put(
-                            CommandReceiver::mrc_frame{
-                                new_msg_buffer, 
-                                index, 
-                                timer::timer_capture[1] - timer::timer_capture[0], 
-                                timer::timer_capture[2] - timer::timer_capture[1]
-                            }
-                        );
+                        if(
+                            CommandReceiver::mrc_ingress_buffer.put(
+                                    new_msg_buffer, 
+                                    index, 
+                                    timer::timer_capture[1] - timer::timer_capture[0], 
+                                    timer::timer_capture[2] - timer::timer_capture[1]
+                            )
+                          )
+                        {
+                            sat_status.communication.mrc_buffer_overflow++;
+                        }
                     } else if(index == rx_buffer_size){
                         sat_status.uart.too_long_message++;
                         state=rxsate::WAITNEWPACKET;

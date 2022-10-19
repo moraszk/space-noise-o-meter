@@ -174,64 +174,68 @@ namespace gpio{
 	
 }
 
+namespace{
+	using namespace gpio;
+	
+	const constexpr std::array<gpio::pin, 16> porta = {{
+		{ .mode= ad, .pull=nopull, .alter=AF0 }, //0  -- HSE
+		{ .mode= ad, .pull=nopull, .alter=AF0 }, //1  -- Half_vref
+		{ .mode= ad, .pull=nopull, .alter=AF0 }, //2  -- Hall_exp
+		{ .mode= ad, .pull=nopull, .alter=AF0 }, //3  -- Temperature
+		{ .mode= input, .pull=pulldown, .alter=AF0 }, //4  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //5  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //6  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //7  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //8  -- NC
+		{ .mode= input, .pull=pulldown, .alter=AF4 }, //9  -- TX 
+		{ .mode= input, .pull=pulldown, .alter=AF4 }, //10 -- RX
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //11 -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //12 -- NC
+		{ .mode= alter, .pull=pulldown, .alter=AF0 }, //13 -- SWDIO TODO turn off swd in production
+		{ .mode= alter, .pull=pulldown, .alter=AF0 }, //14 -- SWCLK TODO turn off swd in production
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //15 -- NC
+	}};
+	
+	const constexpr std::array<gpio::pin, 16> portb = {{
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //0  -- NC
+		{ .mode= alter, .pull=pulldown, .alter=AF5 }, //1  -- RX TIM capture
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //2  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //3  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //4  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //5  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //6  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //7  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //8  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //9  -- BOOT0 tied to gnd
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //10 -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //11 -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //12 -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //13 -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //14 -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //15 -- NC
+	}};
+	
+	const constexpr std::array<gpio::pin, 16> portc = {{
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //0  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //1  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //2  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //3  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //4  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //5  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //6  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //7  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //8  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //9  -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //10 -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //11 -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //12 -- NC
+		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //13 -- NC
+		{ .mode= output, .pull=nopull, .alter=AF0 }, //14 -- Hall_on control
+		{ .mode= input, .pull=nopull, .alter=AF0 }, //15 -- Oscillator status signal
+	}};
+}
+
 void gpio::init(){
-		constexpr std::array<gpio::pin, 16> porta = {{
-			{ .mode= ad, .pull=nopull, .alter=AF0 }, //0  -- HSE
-			{ .mode= ad, .pull=nopull, .alter=AF0 }, //1  -- Half_vref
-			{ .mode= ad, .pull=nopull, .alter=AF0 }, //2  -- Hall_exp
-			{ .mode= ad, .pull=nopull, .alter=AF0 }, //3  -- Temperature
-			{ .mode= input, .pull=pulldown, .alter=AF0 }, //4  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //5  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //6  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //7  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //8  -- NC
-			{ .mode= input, .pull=pulldown, .alter=AF4 }, //9  -- TX 
-			{ .mode= input, .pull=pulldown, .alter=AF4 }, //10 -- RX
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //11 -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //12 -- NC
-			{ .mode= alter, .pull=pulldown, .alter=AF0 }, //13 -- SWDIO TODO turn off swd in production
-			{ .mode= alter, .pull=pulldown, .alter=AF0 }, //14 -- SWCLK TODO turn off swd in production
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //15 -- NC
-		}};
-		
-		constexpr std::array<gpio::pin, 16> portb = {{
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //0  -- NC
-			{ .mode= alter, .pull=pulldown, .alter=AF5 }, //1  -- RX TIM capture
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //2  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //3  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //4  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //5  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //6  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //7  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //8  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //9  -- BOOT0 tied to gnd
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //10 -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //11 -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //12 -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //13 -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //14 -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //15 -- NC
-		}};
-		
-		constexpr std::array<gpio::pin, 16> portc = {{
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //0  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //1  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //2  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //3  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //4  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //5  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //6  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //7  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //8  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //9  -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //10 -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //11 -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //12 -- NC
-			{ .mode= ad, .pull=pulldown, .alter=AF0 }, //13 -- NC
-			{ .mode= output, .pull=nopull, .alter=AF0 }, //14 -- Hall_on control
-			{ .mode= input, .pull=nopull, .alter=AF0 }, //15 -- Oscillator status signal
-		}};
-		
 		static_assert(gpio::calculator::MODER(porta)+1, "this functino should be computed compile time");
 		static_assert(gpio::calculator::PUPDR(porta)+1, "this functino should be computed compile time");
 		static_assert(gpio::calculator::AFRL(porta)+1 , "this functino should be computed compile time");

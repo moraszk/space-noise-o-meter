@@ -9,6 +9,7 @@
 #include "../Src/checksum.cpp"
 #include "../Src/command_sender.cpp"
 #include "../Src/measure_memory.cpp"
+#include "command.hpp"
 
 //TODO include file
 sat_stat sat_status;
@@ -42,11 +43,11 @@ int main(){
     
     //Now we are adter the sat_stat telemetries
     
-    measure_memory.baud_rate.register_measure(Destinition::OBC, 0);
-    measure_memory.baud_rate.register_measure(Destinition::OBC, 1);
-    measure_memory.baud_rate.register_measure(Destinition::OBC, 2);
-    measure_memory.baud_rate.register_measure(Destinition::OBC, 3);
-    measure_memory.baud_rate.register_measure(Destinition::OBC, 4);
+    measure_memory.baud_rate.register_measure(command::Destinition::OBC, 0);
+    measure_memory.baud_rate.register_measure(command::Destinition::OBC, 1);
+    measure_memory.baud_rate.register_measure(command::Destinition::OBC, 2);
+    measure_memory.baud_rate.register_measure(command::Destinition::OBC, 3);
+    measure_memory.baud_rate.register_measure(command::Destinition::OBC, 4);
     
     for(int i=0;i<60;i++){
         command_sender::sendtel(serial);

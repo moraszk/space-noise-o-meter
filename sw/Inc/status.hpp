@@ -34,8 +34,9 @@ public:
     uint8_t clock;
     
     struct {
-        uint8_t command_without_run : 4;
-        uint8_t unknown_command : 4;
+        uint8_t command_without_run;
+        uint8_t unknown_command;
+        uint8_t mrc_buffer_overflow;
     } communication;
     
     enum class experiment : uint8_t{

@@ -4,12 +4,13 @@
 #include "../Src/utils.cpp"
 
 int main(){
+	// if (utils::hex2int<uint8_t>("") != 0x00) return -1;
 	if (utils::hex2int<uint8_t>("ff") != 0xff) return -1;
 	if (utils::hex2int<uint8_t>("Ff") != 0xff) return -1;
 	if (utils::hex2int<uint8_t>("04") != 0x04) return -1;
 	if (utils::hex2int<uint8_t>("40") != 0x40) return -1;
 	if (utils::hex2int<uint8_t>("00") != 0x00) return -1;
-	
+
 	if (utils::hex2int<uint8_t>("ff000") != 0xff) return -1;
 	if (utils::hex2int<uint8_t>("Ff000") != 0xff) return -1;
 	if (utils::hex2int<uint8_t>("04000") != 0x04) return -1;
@@ -47,6 +48,6 @@ int main(){
 	if (utils::hex2int<uint16_t>("qqFf") != 0x00ff) return -1;
 	if (utils::hex2int<uint16_t>("##04") != 0x0004) return -1;
 	if (utils::hex2int<uint16_t>("0=-;") != 0x0000) return -1;
-	
+
 	return 0;
 }
