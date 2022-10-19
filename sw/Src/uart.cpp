@@ -10,17 +10,10 @@ void uart::send_buffer(const char* begin, const char* end){
 
 void uart::init()
 {
-
-	RCC->APB1ENR = RCC_APB1ENR_USART2EN; //enable usart2 clock
-
-	USART2->BRR = 10000;  // Baud rate of 10000, 
+	USART2->BRR = (10000000 /*MHz*/) / (10000/*baud*/); //Using 16 bit oversampling
 	
-	USART2->CR1 = USART_CR1_RE; // RE=1.. Enable the Receiver
-	USART2->CR1 = USART_CR1_TE;  // TE=1.. Enable Transmitter
-
-	USART2->CR1 = USART_CR1_UE;   // UE = 1... Enable USART
+	USART2->CR1 = USART_CR1_RE | USART_CR1_TE | USART_CR1_UE | USART_CR1_RXNEIE;
 	
 	while ((USART2->ISR & USART_ISR_TEACK) == 0);
-
 	while ((USART2->ISR & USART_ISR_REACK) == 0);
 }
