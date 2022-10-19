@@ -46,7 +46,7 @@ memoryusage: $(OBJECTS)
 
 sw/Tests/%: sw/Tests/%.cpp
 	@echo "[CXX]    $(notdir $<)"
-	@g++ -std=c++20 $^ -o $@ -I sw/Tests -I sw/Inc -I sw/Src -g3
+	@g++ -std=c++20 -fsanitize=address -fno-omit-frame-pointer $^ -o $@ -I sw/Tests -I sw/Inc -I sw/Src -g3
 
 tests = $(basename $(wildcard sw/Tests/*cpp))
 
@@ -65,7 +65,7 @@ fuzztests = $(basename $(wildcard sw/FuzzTests/*cpp))
 fuzztests: $(fuzztests)
 	@for i in $^ ; do \
                 echo -n "Running fuzztest" $$i; \
-                ./$$i CORPUS;\
+                ./$$i CORPUS -max_total_time=30;\
         done
 
 .PHONY: tests clean fuzztests stackusage memoryusage
