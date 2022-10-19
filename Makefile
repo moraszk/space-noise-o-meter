@@ -12,16 +12,11 @@
 #                ||     ||
 #######################################
 
-#Implicit c++ rule
-#$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c
-
-#Implicit c rule
-#$(CC) $(CPPFLAGS) $(CFLAGS) -c
-
 CC = arm-none-eabi-gcc
 CXX = arm-none-eabi-g++
+SIZE = arm-none-eabi-size
 
-CPPFLAGS = -mcpu=cortex-m0plus -g3 -O0 -ffunction-sections -fdata-sections -Wall -Wextra --specs=nano.specs -mfloat-abi=soft -mthumb -I sw/Inc
+CPPFLAGS = -mcpu=cortex-m0plus -g3 -O0 -ffunction-sections -fdata-sections -Wall -Wextra --specs=nano.specs -mfloat-abi=soft -mthumb -I sw/Inc -fstack-usage
 CFLAGS = -std=gnu11
 CXXFLAGS = -std=c++2a -fno-exceptions -fno-rtti -fno-use-cxa-atexit
 
@@ -36,6 +31,16 @@ sw/main.elf: $(OBJECTS)
 clean:
 	find sw -name "*o" -delete
 	find sw -executable -type f -delete
+	find sw -name "*su" -delete
+
+####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####
+
+stackusage: $(OBJECTS)
+	cat $(addsuffix .su, $(basename $(wildcard sw/Src/*cpp))) | awk 'BEGIN{FS="\t"} {print $$2 " " $$1 " " $$3;}' | sort -n -r | less
+
+memoryusage: $(OBJECTS)
+	$(SIZE) $^
+
 
 ####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####----####
 
@@ -63,4 +68,4 @@ fuzztests: $(fuzztests)
                 ./$$i CORPUS;\
         done
 
-.PHONY: tests clean fuzztests
+.PHONY: tests clean fuzztests stackusage memoryusage

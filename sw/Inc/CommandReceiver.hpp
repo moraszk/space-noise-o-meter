@@ -31,7 +31,7 @@ namespace CommandReceiver{
 
 		std::array<char,rx_buffer_size> buff;
 		size_t size;
-		unsigned baud;
+		uint16_t baud;
 	public:
 		mrc_frame(): buff{}, size{0} {}
 
@@ -40,7 +40,7 @@ namespace CommandReceiver{
 			size = copiedbuffend - buff.begin();
 		}
 
-		mrc_frame(const std::array<char,rx_buffer_size>& buff, const size_t size, uint32_t t1, uint32_t t2):
+		mrc_frame(const std::array<char,rx_buffer_size>& buff, const size_t size, uint16_t t1, uint16_t t2):
 			buff{buff}, size{size}
 		{
 			//t's are measured from the \n character rising edge differenecs

@@ -73,13 +73,15 @@ namespace utils{
 
         bool empty(){ return read == write; }
 
-        void put_nocheck(T n){
-            *write = std::move(n);
-             write = next_it(write);
+        template<typename... Args>
+        void put_nocheck(Args&&... ctor_args) { //TODO rename to emplace_nocheck
+            *write = T{std::forward<Args>(ctor_args)...};
+            write = next_it(write);
         }
-
-        bool put(T n){
-            put_nocheck(std::move(n));
+        
+        template<typename... Args>
+        bool put(Args&&... ctor_args){
+            put_nocheck(std::forward<Args>(ctor_args)...);
 
             if(empty()){
                 read=next_it(read);
@@ -87,6 +89,7 @@ namespace utils{
             } else
                 return false;
         }
+        
 
         T get(){
             T ret = *read;
