@@ -51,12 +51,10 @@ void USART2_IRQHandler(void) {
 
                         if(
                             CommandReceiver::mrc_ingress_buffer.put(
-                                CommandReceiver::mrc_frame{
                                     new_msg_buffer, 
                                     index, 
                                     timer::timer_capture[1] - timer::timer_capture[0], 
                                     timer::timer_capture[2] - timer::timer_capture[1]
-                                }
                             )
                           )
                         {

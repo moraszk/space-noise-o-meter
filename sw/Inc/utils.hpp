@@ -75,7 +75,7 @@ namespace utils{
 
         template<typename... Args>
         void put_nocheck(Args&&... ctor_args) { //TODO rename to emplace_nocheck
-            *write = T{std::forward<Args>(ctor_args)...};
+            new (write) (T) (std::forward<Args>(ctor_args)...);
             write = next_it(write);
         }
         
