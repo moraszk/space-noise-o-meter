@@ -23,6 +23,10 @@
  * -----Call unknown interrupt/hard fault when main returns
  */
 
+namespace{
+	CommandReceiver::mrc_frame frame;
+}
+
 int main(void){
 	gpio::init();
 	wdg::init();
@@ -31,7 +35,7 @@ int main(void){
 	
 	while(true){
 		if( !CommandReceiver::mrc_ingress_buffer.empty() ) {
-			CommandReceiver::mrc_frame frame = CommandReceiver::mrc_ingress_buffer.get();
+			frame = CommandReceiver::mrc_ingress_buffer.get();
 
 			if(frame.isValid() && frame.getBaud() != 0){} //TODO to be inserted
 			

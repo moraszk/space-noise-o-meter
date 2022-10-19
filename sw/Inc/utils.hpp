@@ -91,10 +91,10 @@ namespace utils{
         }
         
 
-        T get(){
-            T ret = *read;
+        T&& get(){
+            auto ret = read;
             read = next_it(read);
-            return ret;
+            return std::move(*ret);
         }
     };
 
