@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.10.19)  19 OCT 2022 23:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.10.19)  19 OCT 2022 23:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -966,7 +966,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 
 ]
-Underfull \hbox (badness 10000) in alignment at lines 125--125
+Underfull \hbox (badness 10000) in alignment at lines 127--127
 [][][][][][][]
  []
 
@@ -976,7 +976,7 @@ AED: lastpage setting LastPage
 
 ] (./datasheet.aux)
 Package rerunfilecheck Info: File `datasheet.out' has not changed.
-(rerunfilecheck)             Checksum: E50C1E7A0B1569162BAEA0E53EBEC8E5;672.
+(rerunfilecheck)             Checksum: 13045721C7AB46EA4AB5AA8A652E7F76;596.
  ) 
 Here is how much of TeX's memory you used:
  46712 strings out of 478238
@@ -999,7 +999,7 @@ pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/publ
 ic/cm-super/sfrm1000.pfb>
-Output written on datasheet.pdf (2 pages, 158056 bytes).
+Output written on datasheet.pdf (2 pages, 157285 bytes).
 PDF statistics:
  124 PDF objects out of 1000 (max. 8388607)
  91 compressed objects within 1 object stream

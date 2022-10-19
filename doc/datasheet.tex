@@ -106,6 +106,7 @@ You can build the PDF document using command \texttt{latexmk -pdf}.
 % page-by-page.
 \onecolumn
 
+
 \section{Electrical Specifications}
 All specifications are in $-40\degree C \leq T_A \leq 85\degree C$ unless otherwise noted.
 
@@ -117,10 +118,11 @@ All specifications are in $-40\degree C \leq T_A \leq 85\degree C$ unless otherw
     \textbf{Parameter} & \textbf{Symbol} & \textbf{Min.} & \textbf{Typ.} & \textbf{Max.} &
     \textbf{Unit} \\
     \hline
-    Current consumption  & $I_S$ & 20.9 & 21.0 & 21.1 & mA  \\
-	Additional current consumption with oscillator on & $I_O$ & 10 & 10 & 10 & mA \\
+    Current consumption  & $I_S$ & 10 & 10 & 10 & mA  \\
+	Standby current consumption & $I_B$ & 10 & 10 & 10 & mA \\
+	Additional current consumption with Oscillator on & $I_O$ & 10 & 10 & 10 & mA \\
 	Additional current consumption with Hall sensor on & $I_H$ & 10 & 10 & 10 & mA \\
-
+	Additional current consumption with Temperature sensor on & $I_T$ & 10 & 10 & 10 & mA \\
     \thickhline
 \end{tabularx}
 \begin{tablenotes}
@@ -129,18 +131,28 @@ All specifications are in $-40\degree C \leq T_A \leq 85\degree C$ unless otherw
 \end{threeparttable}
 \end{table}
 
-\section{Absolute Maximum Ratings}
+
+
+\section{Dimensions}
 
 \begin{table}[h]
-\caption{Absolute Maximum Ratings of Example Data Sheet}
+\caption{Board Dimensions}
 \begin{tabularx}{\textwidth}{l | X}
     \thickhline
-    \textbf{Parameter} & \textbf{Rating} \hspace{5cm} \\
+    \textbf{Parameter} & \textbf{Size} \hspace{5cm} \\
     \hline
-    Daily exposure to LaTeX & 24 hours \\
+    Side & 30.0 x 30.0  \\
+	Height & 3.0 \\
     \thickhline
 \end{tabularx}
+	\begin{tablenotes}
+	\item[1]{Dimensions are expressed in millimeters.}
+	\end{tablenotes}
 \end{table}
+
+
+
+
 
 \textbf{Note:} Stresses above those listed under Absolute Maximum Ratings can
 cause permanent damage to the device. This is a stress rating only. Functional
