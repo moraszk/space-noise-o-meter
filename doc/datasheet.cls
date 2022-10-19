@@ -91,11 +91,12 @@
 
 % Rest of the pages have both header and footer
 \fancypagestyle{normalpage}{
+    \fancyhf{}
     \renewcommand{\headrulewidth}{0.5pt}
     \renewcommand{\footrulewidth}{0.5pt}
-    \fancyhead[L]{\@author}
+   % \fancyhead[L]{\@author}
     \fancyhead[C]{\slshape\@title}
-    \fancyhead[R]{\@date}
+   
     \fancyfoot[L]{\@revision}
     \fancyfoot[C]{\@date}
     \fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
