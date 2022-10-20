@@ -54,6 +54,8 @@ public:
         uint16_t temp;
         uint16_t vref;
     } adc;
+    
+    std::array<uint16_t,3> timer_capture;
         
     const unsigned char * getchunk(const std::size_t chunk){
         unsigned char* begin_data = reinterpret_cast<unsigned char*>(&sat_status.bootnum);

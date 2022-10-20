@@ -3,9 +3,10 @@
 #include <cstdio>
 #include "stm32l010x4.h"
 #include "utils.hpp"
-#include "timer.hpp"
 
 utils::ringbuffer<CommandReceiver::mrc_frame, mrc_ingress_buffer_len> CommandReceiver::mrc_ingress_buffer;
+
+extern "C" void USART2_IRQHandler(void);
 
 void USART2_IRQHandler(void) {
     static enum class rxsate {WAITNEWPACKET, MIDDLE} state = rxsate::WAITNEWPACKET;
@@ -47,14 +48,12 @@ void USART2_IRQHandler(void) {
                     if(received_char == '\n'){
                         state=rxsate::WAITNEWPACKET;
 
-                        //Stop timer etc.
-
-                        if(
+                        if( 
                             CommandReceiver::mrc_ingress_buffer.put(
                                     new_msg_buffer, 
                                     index, 
-                                    timer::timer_capture[1] - timer::timer_capture[0], 
-                                    timer::timer_capture[2] - timer::timer_capture[1]
+                                    sat_status.timer_capture[1] - sat_status.timer_capture[0],
+                                    sat_status.timer_capture[2] - sat_status.timer_capture[1]
                             )
                           )
                         {
