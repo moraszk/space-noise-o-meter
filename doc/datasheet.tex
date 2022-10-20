@@ -24,6 +24,9 @@
 \date{October 2022}
 \revision{Revision 1}
 
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 
 
 \begin{document}
@@ -174,6 +177,10 @@ All specifications are in $25\degree C$  unless otherwise noted.
 	\includegraphics[width=1\textwidth]{SDS2}
 	\caption{Universal Asynchronous Receiver-Transmitter bit time measure}
 \end{figure}
+
+\newpage
+\section{Validation report}
+\input{report}
 
 
 
