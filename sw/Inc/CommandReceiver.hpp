@@ -14,11 +14,17 @@ const constexpr static size_t mrc_ingress_buffer_len = 4;
 
 namespace CommandReceiver{
 	enum class Command {
+		// Start working
 		RUN,
+		// Stop working
 		OFF,
+		// Request telemetry
 		RQT,
+		// Command from earth. See telecommand.cpp
 		CMD,
+		// Acknowledgement from module to ODS
 		ACK,
+		// Telemetry from ODS to module
 		TEL,
 		UNKNOWN
 	};
@@ -31,7 +37,7 @@ namespace CommandReceiver{
 
 		std::array<char,rx_buffer_size> buff;
 		size_t size;
-		uint16_t baud;
+		uint16_t baud{0};
 	public:
 		mrc_frame(): buff{}, size{0} {}
 
@@ -85,7 +91,7 @@ namespace CommandReceiver{
 			else
 			return command::Destinition::UNKNOWN;
 		}
-		
+
 		CommandReceiver::Command getCommand() const {
 			if (__builtin_strncmp(buff.data()+command_offset, "RQT", 3) == 0) return CommandReceiver::Command::RQT;
 			else
@@ -130,7 +136,7 @@ namespace CommandReceiver{
 		uint8_t getSerial() const {
 			return utils::hex2int<uint8_t>(buff.data()+size-serial_backset);
 		}
-		
+
 		const char * getSerialStr() const {
 			return buff.data()+size-serial_backset;
 		}
