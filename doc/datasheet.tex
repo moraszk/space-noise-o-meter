@@ -59,44 +59,12 @@ Our fourth experiment simply measures the magnetic field through the PCB.
 \vfill\break
 
 \begin{figure}[h]
-    \begin{circuitikz}[european]
-        \node[op amp] (amp1) {};
-        \node[op amp, below = 0.5cm, xscale = -1] (amp2) {};
-        \draw (amp1.out) |- (amp2.-);
-        \draw (amp2.-) ++(0, 0.3cm) node[circ]{} to +(2,0) node[above left]{5};
-        \draw (amp2.out) to (amp1.+);
-        \draw (amp1.+) ++(0, -0.3cm) node[circ]{} to +(-2,0) node[above right]{2};
-        \draw (amp1.-) to +(-2,0) node[above right]{1};
-        \draw (amp2.+) to +(2,0) node[above left]{4};
-        \draw (amp1.out) +(0,0.5cm) node (Vdd) {$\mathrm{V_{DD}}$};
-        \draw (Vdd.east) to +(1.5,0) node [above left]{6};
-        \draw (amp2.out) +(0,-0.5cm) node (Vss) {$\mathrm{V_{SS}}$};
-        \draw (Vss.west) to +(-1.6,0) node [above right]{3};
-        \draw ($(amp1.north west) + (-0.5,0.5)$) rectangle ($(amp2.south west) + (0.5,-0.5)$);
-    \end{circuitikz}
-    \caption{Pinout and internal circuit}
+    
+	\centering
+	\includegraphics[width=0.5\textwidth]{3d_render}
+	\caption{3D board image}
 \end{figure}
 
-\begin{figure}[h]
-    \begin{tikzpicture}
-        \sffamily
-        \begin{axis}[
-            width=7cm,
-            xlabel={Number of LaTeX packages},
-            ytick distance=20,
-            yticklabel={\pgfmathprintnumber{\tick}\%},
-            xmajorgrids, ymajorgrids]
-        \addplot[smooth,mark=*] plot coordinates {
-            (0,4)
-            (5,50)
-            (10,80)
-            (15,95)
-            (20,98)
-        };
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Typical data sheet production efficiency}
-\end{figure}
 
 % For wide tables, a single column layout is better. It can be switched
 % page-by-page.
@@ -130,7 +98,7 @@ All specifications are in $-40\degree C \leq T_A \leq 85\degree C$ unless otherw
 
 
 \section{Dimensions}
-
+All specifications are in $25\degree C$  unless otherwise noted.
 \begin{table}[h]
 \caption{Board Dimensions}
 \begin{tabularx}{\textwidth}{l | X}
@@ -147,19 +115,67 @@ All specifications are in $-40\degree C \leq T_A \leq 85\degree C$ unless otherw
 \end{table}
 
 
+\begin{table}[h]
+\caption{Precise board weight}
+\begin{tabularx}{\textwidth}{l | X}
+    \thickhline
+	\textbf{Parameter} & \textbf{Max.}  \hspace{5cm} \\
+    \hline
+	Weight & 5 \\
+	
+    \thickhline
+\end{tabularx}
+	\begin{tablenotes}
+	\item[1]{Units are expressed in gramm.}
+	\end{tablenotes}
+\end{table}
+
+\newpage
+
+\section{Commands}
+\begin{table}[h]
+\caption{User Commands}
+\begin{tabularx}{\textwidth}{l | X}
+    \thickhline
+    \textbf{Parameter} & \textbf{Function} \hspace{5cm} \\
+    \hline
+   	R & Reboot \\
+	Z & Zero stat \\
+	U & meas uart \\
+	N & meas noise \\
+	H & meas hall \\
+	Q & quotes sending \\
+	T & meas temp \\
+	E & meas no experiment \\
+	V & hall vref on \\
+    \thickhline
+\end{tabularx}
+\end{table}
 
 
 
-\textbf{Note:} Stresses above those listed under Absolute Maximum Ratings can
-cause permanent damage to the device. This is a stress rating only. Functional
-operation of the device is not implied in any conditions above those indicated
-in the Electrical Specifications section.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1.2\textwidth,angle = 90]{sch}
 	\caption{Schematics}
 \end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{SDS1}
+	\caption{Universal Asynchronous Receiver-Transmitter frame waveform}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{SDS2}
+	\caption{Universal Asynchronous Receiver-Transmitter bit time measure}
+\end{figure}
+
+
 
 \end{document}
 
