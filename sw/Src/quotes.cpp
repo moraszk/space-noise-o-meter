@@ -29,8 +29,7 @@ namespace{
         //Quotes
         "Hello",
         "World",
-        "Build with the donations of our sponsors: RET Elektronika, Eurocircuits, FDH Kft.",
-        "Outher quotesfffdvdddddddddddddddd",
+        "Build with the donations of our sponsors: RET Elektronika, Eurocircuits, FDH Kft., Csiha Zrt.",
         "\"If all world hated you, and believed you wicked, while your own conscience approvwd you, and absolved you from quiet, you would not be without friends.\" -Jane Eyre",
         "Viseld el mások agybaját, mert más is elviseli a tiédet.",
         "Ne nyomd el, zárd le",
