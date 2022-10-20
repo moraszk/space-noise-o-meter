@@ -47,6 +47,13 @@ public:
         TEMP,
         HALL
     } experiment;
+    
+    struct {
+        uint16_t half_vref;
+        uint16_t hall_exp;
+        uint16_t temp;
+        uint16_t vref;
+    } adc;
         
     const unsigned char * getchunk(const std::size_t chunk){
         unsigned char* begin_data = reinterpret_cast<unsigned char*>(&sat_status.bootnum);

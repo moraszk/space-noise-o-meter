@@ -4,6 +4,8 @@
 #include "status.hpp"
 #include "watchdog.hpp"
 #include "uart.hpp"
+#include "dma.hpp"
+#include "adc.hpp"
 
 /*
  * Bootup process:
@@ -28,8 +30,10 @@ namespace{
 }
 
 int main(void){
+	//wdg::init();
 	gpio::init();
-	wdg::init();
+	dma::init();
+	adc::init();
 	uart::init();
 	
 	
