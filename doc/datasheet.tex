@@ -85,11 +85,9 @@ All specifications are in $-40\degree C \leq T_A \leq 85\degree C$ unless otherw
     \textbf{Parameter} & \textbf{Symbol} & \textbf{Min.} & \textbf{Typ.} & \textbf{Max.} &
     \textbf{Unit} \\
     \hline
-    Current consumption  & $I_S$ & 10 & 10 & 10 & mA  \\
-	Standby current consumption & $I_B$ & 10 & 10 & 10 & mA \\
-	Additional current consumption with Oscillator On & $I_O$ & 10 & 10 & 10 & mA \\
-	Additional current consumption with Hall sensor On & $I_H$ & 10 & 10 & 10 & mA \\
-	Additional current consumption with Temperature sensor On & $I_T$ & 10 & 10 & 10 & mA \\
+    Current consumption  & $I_S$ & - & 10 & - & mA  \\
+	Additional current consumption with spear oscillator On & $I_O$ & 6 & 7 & 8 & mA \\
+	Additional current consumption with Hall sensor On & $I_H$ & - & 6 & 10 & mA \\
     \thickhline
 \end{tabularx}
 \begin{tablenotes}
@@ -119,7 +117,7 @@ All specifications are in $25\degree C$  unless otherwise noted.
 
 
 \begin{table}[h]
-\caption{Precise board weight}
+\caption{Board weight (Guaranteed by design but not characteristic.)}
 \begin{tabularx}{\textwidth}{l | X}
     \thickhline
 	\textbf{Parameter} & \textbf{Max.}  \hspace{5cm} \\
