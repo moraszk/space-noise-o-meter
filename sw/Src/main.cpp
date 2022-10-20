@@ -4,10 +4,11 @@
 #include "status.hpp"
 #include "watchdog.hpp"
 #include "uart.hpp"
+#include "measure_memory.hpp"
 
 /*
  * Bootup process:
- * 
+ *
  * -- startup.s:
  * -----set stack pointer
  * -----Copy non-const static variables to memory
@@ -31,14 +32,16 @@ int main(void){
 	gpio::init();
 	wdg::init();
 	uart::init();
-	
-	
+
+
 	while(true){
 		if( !CommandReceiver::mrc_ingress_buffer.empty() ) {
 			frame = CommandReceiver::mrc_ingress_buffer.get();
 
-			if(frame.isValid() && frame.getBaud() != 0){} //TODO to be inserted
-			
+			if (!frame.isValid()) {
+				continue;
+			}
+
 			if(frame.getDestinition() == command::Destinition::SU){
 				switch(frame.getCommand()){
 					case CommandReceiver::Command::RUN:
@@ -65,21 +68,28 @@ int main(void){
 					default:
 						sat_status.communication.unknown_command++;
 				}
-			} else {
-				switch(frame.getCommand()){
-					case CommandReceiver::Command::ACK:
-					case CommandReceiver::Command::TEL:
-						frame.getDestinition();
-						frame.getBaud();
-						//from other modules, save baud to register
-						break;
-					default:
-						//from OBS, save baud to register
-						frame.getBaud();
+			}
+			else if (frame.getBaud() != 0)
+			{
+				switch (frame.getCommand())
+				{
+				case CommandReceiver::Command::UNKNOWN:
+					break;
+				case CommandReceiver::Command::ACK:
+				case CommandReceiver::Command::TEL:
+					// save baud of other modules
+					const command::Destinition dest = frame.getDestinition();
+					if (dest != command::Destinition::UNKNOWN)
+					{
+						measure_memory.baud_rate.register_measure(dest, frame.getBaud());
+					}
+					break;
+				default:
+					measure_memory.baud_rate.register_measure(command::Destinition::OBC, frame.getBaud());
 				}
 			}
 		}
-		
+
 		sat_status.clock = gpio::oscillator::get();
 	}
 	wdg::refresh();
