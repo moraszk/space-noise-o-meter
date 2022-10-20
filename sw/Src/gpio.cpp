@@ -80,7 +80,7 @@ namespace gpio{
 				return PUPDR(modes);
 		}
 		
-		consteval uint32_t AFRL(
+		consteval uint32_t AFRH(
 			std::array<pin, 16> pins //Order 0-1-2-3-4-5...-14-15
 		) noexcept {
 			std::array<alter_type, 16> modes = {alter_type::AF0};
@@ -98,7 +98,7 @@ namespace gpio{
 			return ret;
 		}
 		
-		consteval uint32_t AFRH(
+		consteval uint32_t AFRL(
 			std::array<pin, 16> pins //Order 0-1-2-3-4-5...-14-15
 		) noexcept {
 			std::array<alter_type, 16> modes = {alter_type::AF0};
@@ -187,8 +187,8 @@ namespace{
 		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //6  -- NC
 		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //7  -- NC
 		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //8  -- NC
-		{ .mode= input, .pull=pulldown, .alter=AF4 }, //9  -- TX 
-		{ .mode= input, .pull=pulldown, .alter=AF4 }, //10 -- RX
+		{ .mode= alter, .pull=nopull, .alter=AF4 }, //9  -- TX 
+		{ .mode= alter, .pull=nopull, .alter=AF4 }, //10 -- RX
 		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //11 -- NC
 		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //12 -- NC
 		{ .mode= alter, .pull=pulldown, .alter=AF0 }, //13 -- SWDIO TODO turn off swd in production
@@ -198,7 +198,7 @@ namespace{
 	
 	const constexpr std::array<gpio::pin, 16> portb = {{
 		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //0  -- NC
-		{ .mode= alter, .pull=pulldown, .alter=AF5 }, //1  -- RX TIM capture
+		{ .mode= alter, .pull=pullup, .alter=AF5 }, //1  -- RX TIM capture
 		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //2  -- NC
 		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //3  -- NC
 		{ .mode= ad, .pull=pulldown, .alter=AF0 }, //4  -- NC
@@ -245,6 +245,8 @@ void gpio::init(){
 		GPIOA->PUPDR = gpio::calculator::PUPDR(porta);
 		GPIOA->AFR[0] = gpio::calculator::AFRL(porta);
 		GPIOA->AFR[1] = gpio::calculator::AFRH(porta);
+		
+		GPIOA->OSPEEDR = 0xc0c0003; //TODO check
 		
 		GPIOB->MODER = gpio::calculator::MODER(portb);
 		GPIOB->PUPDR = gpio::calculator::PUPDR(portb);
