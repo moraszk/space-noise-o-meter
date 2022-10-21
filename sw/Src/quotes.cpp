@@ -29,8 +29,8 @@ namespace{
         //Quotes
         "Hello",
         "World",
-        "Build with the donations of our sponsors: RET Elektronika, Eurocircuits, FDH Kft., Csiha Zrt.",
-        "\"If all world hated you, and believed you wicked, while your own conscience approvwd you, and absolved you from quiet, you would not be without friends.\" -Jane Eyre",
+        "Built with the donations of our sponsors: RET Elektronika, Eurocircuits, FDH Kft., CSIHA Zrt.",
+       "\"If all world hated you, and believed you wicked, while your own conscience approved you, and absolved you from quiet, you would not be without friends.\" -Jane Eyre",
         "Viseld el mások agybaját, mert más is elviseli a tiédet.",
         "Ne nyomd el, zárd le",
         "Gyertek, jó lesz!",
@@ -45,12 +45,13 @@ namespace{
         "\"Aki a célt nem ismeri, az tud dönteni, aki döntött, nyugalmat talál, aki megtalálta a nyugalmát, bizonytalanságban él. Aki bizonytalanságban él, az birtokolja önmagát, aki birtokolja önmagát, az jobbá teheti életét.\" -Konfociusz",
         "Angyalom ragyogó szeretlek nagyon",
         "Egyesületi tagdíj befizethető az igazgatói irodában",
+        "Móra Ferenc Szakkollégium Hallgatói Egyesület adószáma: 18271137106",
         "A Kalkulus még könnyű tárgynak számít",
         "A sörperc nem jó ötlet, akármennyire is annak tűnik",
         "\"Nem veszem komolyan az életet. De komolyan veszem amit az életben csinálok.\" -A.M.",
-        "Tanultam én, hogy általszűrve a\nTudósok finom kristályműszerén,\nBús földünkkel s bús testemmel roko\nelemekről ád hírt az égi fény",
-        "Mit szavazzak, ez egy főzőverseny, b@szki!",
-        "Nekem az a felgogásom, hogy aki aggódik, az kétszer szenved.",
+        "Tanultam én, hogy általszűrve a\nTudósok finom kristályműszerén,\nBús földünkkel s bús testemmel rokon\nelemekről ád hírt az égi fény",
+        "Mit szavazzak, ez egy főzőverseny, b****i!",
+        "Nekem az a felfogásom, hogy aki aggódik, az kétszer szenved.",
         "\"That's what she said\" -39",
         "https://youtu.be/poO9TBlBpt8",
         "https://youtu.be/I_gwjhvXxzM",
@@ -63,6 +64,7 @@ namespace{
         "https://youtu.be/C_3eYj-pOM",
         "https://youtu.be/4QSOTN45h_M",
         "http://y2u.be/_3wkyerSBpw",
+        "Bojler van eladó!",
         "\"A legnemesebb művészet másokat boldoggá tenni.\" -P. T. Barnum",
         "Mit láttam benned? Hőst, szentet, királyt.\nMit láttál bennem? Rendetlen szabályt.\nMit láttam benned? Magam végzetét.\nMit láttál bennem? Egy út kezdetét.\" -Szabó Lőrinc: Babits",
         "\"Utazni gyönyörű, de élni csak az ember hazájában lehet igazán.\" -Szabó Magda",
@@ -77,6 +79,7 @@ namespace{
         "A macskám (Maszatnak hívják) elég jól megtermett, és egyszer megtámadott egy kutyát, ami kb. feleakkora volt, mint ő. (Egyiküknek sem lett semmi baja.)",
         "A kutyám egyszer egy kapanyéllel akart apportírozni. Szó szerint kilógott a kapanyél a szájából...",
         "Ha a napraforgó a napra forog, neki sem mondhatod, hogy pipacsvirág",
+        "Contributors: Antal Levente, Oltvári Zsófia, Szendefi Dániel, Südi Tamás, Kiss Ádám, Kiszel Pál, Tokai Eszter, Kovács Adrienn, Kabay János Szakkollégium"
 	"CQ DE HA8KDA"
     );
 
