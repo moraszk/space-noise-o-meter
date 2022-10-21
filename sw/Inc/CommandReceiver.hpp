@@ -55,11 +55,11 @@ namespace CommandReceiver{
 			//t2 equals to five baud time
 
 			constexpr uint32_t normal_baud_time = 10000000/10000; //AHB Clock per baud
-			constexpr uint32_t t1_normal_value = normal_baud_time * 2;
-			constexpr uint32_t t2_normal_value = normal_baud_time * 5;
-			constexpr uint32_t allowed_error = normal_baud_time * 0.03 * 7;
+			constexpr uint32_t t1_normal_value [[unused]] = normal_baud_time * 2;
+			constexpr uint32_t t2_normal_value [[unused]] = normal_baud_time * 5;
+			constexpr uint32_t allowed_error_seven_times = normal_baud_time * 7 * 0.03 ;
 
-			if( ( (t2*2) > (t1*5) + allowed_error ) || ( (t2*2) < (t1*5) - allowed_error ) ){
+			if( ( (t2*2) > (t1*5) + allowed_error_seven_times ) || ( (t2*2) < (t1*5) - allowed_error_seven_times ) ){
 				baud = 0;
 			} else {
 				baud = (t1+t2)/ 7;

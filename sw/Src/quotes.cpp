@@ -29,8 +29,7 @@ namespace{
         //Quotes
         "Hello",
         "World",
-        "Build with the donations of our sponsors: RET Elektronika, Eurocircuits, FDH Kft.",
-        "Outher quotesfffdvdddddddddddddddd",
+        "Build with the donations of our sponsors: RET Elektronika, Eurocircuits, FDH Kft., Csiha Zrt.",
         "\"If all world hated you, and believed you wicked, while your own conscience approvwd you, and absolved you from quiet, you would not be without friends.\" -Jane Eyre",
         "Viseld el mások agybaját, mert más is elviseli a tiédet.",
         "Ne nyomd el, zárd le",
@@ -77,7 +76,8 @@ namespace{
         "\"Besétáltál az életembe, mintha mindig is itt lettél volna, mintha a szívemet csak neked építettem volna.\" -A.R. Asher",
         "A macskám (Maszatnak hívják) elég jól megtermett, és egyszer megtámadott egy kutyát, ami kb. feleakkora volt, mint ő. (Egyiküknek sem lett semmi baja.)",
         "A kutyám egyszer egy kapanyéllel akart apportírozni. Szó szerint kilógott a kapanyél a szájából...",
-        "Ha a napraforgó a napra forog, neki sem mondhatod, hogy pipacsvirág"
+        "Ha a napraforgó a napra forog, neki sem mondhatod, hogy pipacsvirág",
+	"CQ DE HA8KDA"
     );
 
     const constexpr size_t datagram_lenght_ascii = 12;

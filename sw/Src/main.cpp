@@ -4,6 +4,9 @@
 #include "status.hpp"
 #include "watchdog.hpp"
 #include "uart.hpp"
+#include "dma.hpp"
+#include "adc.hpp"
+#include "timer.hpp"
 #include "measure_memory.hpp"
 
 /*
@@ -29,8 +32,11 @@ namespace{
 }
 
 int main(void){
+	//wdg::init();
 	gpio::init();
-	wdg::init();
+	timer::init();
+	dma::init();
+	adc::init();
 	uart::init();
 
 
