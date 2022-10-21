@@ -5,7 +5,7 @@
 #include "gpio.hpp"
 
 namespace telecommand{
-    
+
     enum class telecommand : unsigned char {
         reboot = 'R',
         zero_stat = 'Z',
@@ -16,9 +16,8 @@ namespace telecommand{
         meas_temp = 'T',
         meas_no_experiment = 'E',
         hall_vref_on = 'V'
-        
     };
-    
+
     //cmd example ",A"
     void parse_command(const unsigned char* cmd){
         telecommand comm {cmd[1]};
@@ -49,6 +48,9 @@ namespace telecommand{
                 break;
             case telecommand::hall_vref_on:
                 gpio::hall::on();
+                break;
+            default:
+                sat_status.communication.unknown_command++;
         }
     }
 }
