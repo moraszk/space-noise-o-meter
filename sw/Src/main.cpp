@@ -6,6 +6,7 @@
 #include "uart.hpp"
 #include "dma.hpp"
 #include "adc.hpp"
+#include "timer.hpp"
 
 /*
  * Bootup process:
@@ -32,6 +33,7 @@ namespace{
 int main(void){
 	//wdg::init();
 	gpio::init();
+	timer::init();
 	dma::init();
 	adc::init();
 	uart::init();
