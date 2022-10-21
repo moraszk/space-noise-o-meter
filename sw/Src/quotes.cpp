@@ -76,7 +76,8 @@ namespace{
         "\"Besétáltál az életembe, mintha mindig is itt lettél volna, mintha a szívemet csak neked építettem volna.\" -A.R. Asher",
         "A macskám (Maszatnak hívják) elég jól megtermett, és egyszer megtámadott egy kutyát, ami kb. feleakkora volt, mint ő. (Egyiküknek sem lett semmi baja.)",
         "A kutyám egyszer egy kapanyéllel akart apportírozni. Szó szerint kilógott a kapanyél a szájából...",
-        "Ha a napraforgó a napra forog, neki sem mondhatod, hogy pipacsvirág"
+        "Ha a napraforgó a napra forog, neki sem mondhatod, hogy pipacsvirág",
+	"CQ DE HA8KDA"
     );
 
     const constexpr size_t datagram_lenght_ascii = 12;
