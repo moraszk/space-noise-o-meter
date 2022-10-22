@@ -73,6 +73,7 @@ int main(void){
 							break;
 						}
 						command_sender::sendtel(frame.getSerialStr());
+						break;
 					default:
 						sat_status.communication.unknown_command++;
 				}
