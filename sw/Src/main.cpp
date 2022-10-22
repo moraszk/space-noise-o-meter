@@ -75,10 +75,16 @@ int main(void){
 						sat_status.communication.unknown_command++;
 				}
 			}
-			else if (frame.getBaud() != 0)
+			else if (sat_status.experiment == sat_stat::experiment::UART_RATES && frame.getBaud() != 0)
 			{
 				switch (frame.getCommand())
 				{
+				case CommandReceiver::Command::RQT:
+				case CommandReceiver::Command::RUN:
+				case CommandReceiver::Command::OFF:
+				case CommandReceiver::Command::CMD:
+					measure_memory.baud_rate.register_measure(command::Destinition::OBC, frame.getBaud());
+					break;
 				case CommandReceiver::Command::UNKNOWN:
 					break;
 				case CommandReceiver::Command::ACK:
@@ -90,8 +96,6 @@ int main(void){
 						measure_memory.baud_rate.register_measure(dest, frame.getBaud());
 					}
 					break;
-				default:
-					measure_memory.baud_rate.register_measure(command::Destinition::OBC, frame.getBaud());
 				}
 			}
 		}
