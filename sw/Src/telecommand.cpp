@@ -6,7 +6,7 @@
 
 namespace telecommand{
 
-    enum class telecommand : unsigned char {
+    enum class telecommand : char {
         reboot = 'R',
         zero_stat = 'Z',
         meas_uart = 'U',
@@ -19,7 +19,7 @@ namespace telecommand{
     };
 
     //cmd example ",A"
-    void parse_command(const unsigned char* cmd){
+    void parse_command(const char* cmd){
         telecommand comm {cmd[1]};
         switch(comm){
             case telecommand::reboot:

@@ -34,6 +34,7 @@ namespace CommandReceiver{
 		const constexpr static size_t command_offset = 3;
 		const constexpr static size_t checksum_backset = 6;
 		const constexpr static size_t serial_backset = 9;
+		const constexpr static size_t payload_offset = 6;
 
 		std::array<char,rx_buffer_size> buff;
 		size_t size;
@@ -68,6 +69,10 @@ namespace CommandReceiver{
 
 		size_t getSize() const {
 			return size;
+		}
+
+		const char * getPayload() const {
+			return &buff[payload_offset];
 		}
 
 		unsigned getBaud() const {

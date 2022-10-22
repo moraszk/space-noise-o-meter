@@ -8,6 +8,7 @@
 #include "adc.hpp"
 #include "timer.hpp"
 #include "measure_memory.hpp"
+#include "telecommand.hpp"
 
 /*
  * Bootup process:
@@ -64,7 +65,8 @@ int main(void){
 							sat_status.communication.command_without_run++;
 							break;
 						}
-						//TODO parse command
+						telecommand::parse_command(frame.getPayload());
+						break;
 					case CommandReceiver::Command::RQT:
 						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT){
 							sat_status.communication.command_without_run++;
