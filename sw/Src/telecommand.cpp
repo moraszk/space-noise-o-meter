@@ -6,7 +6,8 @@
 
 namespace telecommand{
 
-    enum class telecommand : char {
+    enum class telecommand : char
+    {
         reboot = 'R',
         zero_stat = 'Z',
         meas_uart = 'U',
@@ -15,7 +16,17 @@ namespace telecommand{
         meas_quotes = 'Q',
         meas_temp = 'T',
         meas_no_experiment = 'E',
-        hall_vref_on = 'V'
+        hall_vref_on = 'V',
+        tictactoe0 = '0', // invalid moves result in a loss so the game is over
+        tictactoe1 = '1',
+        tictactoe2 = '2',
+        tictactoe3 = '3',
+        tictactoe4 = '4',
+        tictactoe5 = '5',
+        tictactoe6 = '6',
+        tictactoe7 = '7',
+        tictactoe8 = '8',
+        tictactoe9 = '9',
     };
 
     //cmd example ",A"
@@ -48,6 +59,18 @@ namespace telecommand{
                 break;
             case telecommand::hall_vref_on:
                 gpio::hall::on();
+                break;
+            case telecommand::tictactoe0:
+            case telecommand::tictactoe1:
+            case telecommand::tictactoe2:
+            case telecommand::tictactoe3:
+            case telecommand::tictactoe4:
+            case telecommand::tictactoe5:
+            case telecommand::tictactoe6:
+            case telecommand::tictactoe7:
+            case telecommand::tictactoe8:
+            case telecommand::tictactoe9:
+                sat_status.tictactoe.move(static_cast<uint8_t>(comm) - static_cast<uint8_t>(telecommand::tictactoe0));
                 break;
             default:
                 sat_status.communication.unknown_command++;

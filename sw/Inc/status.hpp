@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 #include "utils.hpp"
+#include "tictactoe.hpp"
 
 struct sat_stat;
 extern struct sat_stat sat_status;
@@ -12,15 +13,16 @@ private:
 
     sat_stat(sat_stat&) = delete;
     void operator=(sat_stat&) = delete;
-    
+
 public:
     static const constexpr std::size_t chunk_length = 12;
     static const constexpr std::size_t chunk_length_in_base64 = chunk_length * 4 / 3;
-    
+
     sat_stat();
 
     uint8_t bootnum;
     uint8_t unknown_interrupt;
+
     struct {
         uint8_t frame_error;
         uint8_t noise_error;
@@ -30,15 +32,15 @@ public:
         uint16_t received_char;
         uint16_t idle;
     } uart;
-    
+
     uint8_t clock;
-    
+
     struct {
         uint8_t command_without_run;
         uint8_t unknown_command;
         uint8_t mrc_buffer_overflow;
     } communication;
-    
+
     enum class experiment : uint8_t{
         OFF = 0,
         ADC_NOISE,
@@ -47,7 +49,7 @@ public:
         TEMP,
         HALL
     } experiment;
-    
+
     struct {
         uint16_t errors;
     } measure;
@@ -58,17 +60,19 @@ public:
         uint16_t temp;
         uint16_t vref;
     } adc;
-    
+
     std::array<uint16_t,4> timer_capture;
-        
+
+    TicTacToe tictactoe;
+
     const unsigned char * getchunk(const std::size_t chunk){
         unsigned char* begin_data = reinterpret_cast<unsigned char*>(&sat_status.bootnum);
         return begin_data + (chunk_length*chunk);
     }
 };
 
-const constinit std::size_t sat_stat__number_of_chunks = 
+const constinit std::size_t sat_stat__number_of_chunks =
     utils::round_up(
-        (sizeof(sat_stat)-sizeof(uint64_t)), 
+        (sizeof(sat_stat)-sizeof(uint64_t)),
         sat_stat::chunk_length
     );
