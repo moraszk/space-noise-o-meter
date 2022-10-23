@@ -14,7 +14,7 @@ namespace command_sender{
                 
         tel_heading.copy(output_buffer.data(), tel_heading.size());
         
-        const std::array<char, 2>& chunkhexstr = utils::char2hex(chunkid);
+        const std::array<char, 2> chunkhexstr = utils::char2ID(chunkid);
         output_buffer[tel_heading.size()]= chunkhexstr[0];
         output_buffer[tel_heading.size()+1]= chunkhexstr[1];
         

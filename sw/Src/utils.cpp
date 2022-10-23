@@ -20,7 +20,15 @@ namespace{
             hex_values.at(in % 16)
         };
     }
-    
+
+    inline std::array<char, 2> byte2ID(int in){
+        return {
+            encode_table[in / encode_table.size()]
+            ,
+            encode_table[in % encode_table.size()]
+        };
+    }
+
     static_assert(byte2hex(10)[0]=='0' && byte2hex(10)[1]=='A', "Byte2hex test failed");
     static_assert(byte2hex(0x1b)[0]=='1' && byte2hex(0x1b)[1]=='B', "Byte2hex test failed");
     static_assert(byte2hex(0xb0)[0]=='B' && byte2hex(0xb0)[1]=='0', "Byte2hex test failed");
@@ -52,6 +60,10 @@ std::array<char, 4> utils::base64::encode_triplet(std::uint8_t a, std::uint8_t b
 
 const std::array<char, 2>& utils::char2hex(const unsigned char in){
     return hex_lookup[in];
+}
+
+const std::array<char, 2> utils::char2ID(const size_t in){
+    return byte2ID(in);
 }
 
 void utils::copyashex(const uint16_t number, char* begin){
