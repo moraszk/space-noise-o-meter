@@ -131,6 +131,7 @@ int main(void){
 					default:
 						break;
 				}
+				command_sender::sendack(frame.getSerialStr());
 			}
 		}
 
