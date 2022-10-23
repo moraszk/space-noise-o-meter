@@ -16,6 +16,9 @@ void TicTacToe::move(int idx)
     {
         board[idx - 1] = is_x_turn ? 'X' : 'O';
         is_x_turn = !is_x_turn;
+    } else {
+        // invalid move
+        reset();
     }
 }
 
