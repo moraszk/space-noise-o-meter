@@ -51,7 +51,8 @@ namespace command_sender{
         std::array<char, 16> payload;
         
         switch(sat_status.experiment){
-            case sat_stat::experiment::NO_EXPERIMENT:
+            case sat_stat::experiment::TEMP:
+            case sat_stat::experiment::HALL:
                 if (chunk_id >= sat_stat__number_of_chunks)
                     chunk_id=0;
                 begin = sat_status.getchunk(chunk_id);
@@ -76,11 +77,8 @@ namespace command_sender{
                 } else{
                     begin = quotes::get_chunk(chunk_id-sat_stat__number_of_chunks);
                 }
-            case sat_stat::experiment::TEMP:
-            case sat_stat::experiment::HALL:
             default:
-                //TODO
-                (void)6;
+                return;
         }
             
         

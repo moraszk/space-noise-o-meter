@@ -40,7 +40,7 @@ public:
     } communication;
     
     enum class experiment : uint8_t{
-        NO_EXPERIMENT = 0,
+        OFF = 0,
         ADC_NOISE,
         UART_RATES,
         QUOTES,

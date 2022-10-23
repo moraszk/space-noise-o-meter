@@ -52,23 +52,23 @@ int main(void){
 			if(frame.getDestinition() == command::Destinition::SU){
 				switch(frame.getCommand()){
 					case CommandReceiver::Command::RUN:
-						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT)
-							sat_status.experiment = sat_stat::experiment::ADC_NOISE;
+						if(sat_status.experiment == sat_stat::experiment::OFF)
+							sat_status.experiment = sat_stat::experiment::TEMP;
 						command_sender::sendack(frame.getSerialStr());
 						break;
 					case CommandReceiver::Command::OFF:
-						sat_status.experiment = sat_stat::experiment::NO_EXPERIMENT;
+						sat_status.experiment = sat_stat::experiment::OFF;
 						command_sender::sendack(frame.getSerialStr());
 						break;
 					case CommandReceiver::Command::CMD:
-						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT){
+						if(sat_status.experiment == sat_stat::experiment::OFF){
 							sat_status.communication.command_without_run++;
 							break;
 						}
 						telecommand::parse_command(frame.getPayload());
 						break;
 					case CommandReceiver::Command::RQT:
-						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT){
+						if(sat_status.experiment == sat_stat::experiment::OFF){
 							sat_status.communication.command_without_run++;
 							break;
 						}
@@ -92,12 +92,16 @@ int main(void){
 					break;
 				case CommandReceiver::Command::ACK:
 				case CommandReceiver::Command::TEL:
+				{
 					// save baud of other modules
 					const command::Destinition dest = frame.getDestinition();
 					if (dest != command::Destinition::UNKNOWN)
 					{
 						measure_memory.baud_rate.register_measure(dest, frame.getBaud());
 					}
+					break;
+				}
+				default:
 					break;
 				}
 			}

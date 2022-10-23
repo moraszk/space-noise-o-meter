@@ -43,9 +43,6 @@ namespace telecommand{
             case telecommand::meas_temp:
                 sat_status.experiment = sat_stat::experiment::TEMP;
                 break;
-            case telecommand::meas_no_experiment:
-                sat_status.experiment = sat_stat::experiment::NO_EXPERIMENT;
-                break;
             case telecommand::hall_vref_on:
                 gpio::hall::on();
                 break;
