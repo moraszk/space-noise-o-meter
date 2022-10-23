@@ -77,6 +77,7 @@ namespace command_sender{
                 } else{
                     begin = quotes::get_chunk(chunk_id-sat_stat__number_of_chunks);
                 }
+                break;
             default:
                 return;
         }
