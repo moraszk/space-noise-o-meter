@@ -79,8 +79,9 @@ namespace{
         "A macskám (Maszatnak hívják) elég jól megtermett, és egyszer megtámadott egy kutyát, ami kb. feleakkora volt, mint ő. (Egyiküknek sem lett semmi baja.)",
         "A kutyám egyszer egy kapanyéllel akart apportírozni. Szó szerint kilógott a kapanyél a szájából...",
         "Ha a napraforgó a napra forog, neki sem mondhatod, hogy pipacsvirág",
-        "Contributors: Antal Levente, Oltvári Zsófia, Szendefi Dániel, Südi Tamás, Kiss Ádám, Kiszel Pál, Tokai Eszter, Kovács Adrienn, Kabay János Szakkollégium"
-	"CQ DE HA8KDA"
+        "Contributors: Antal Levente, Oltvári Zsófia, Szendefi Dániel, Südi Tamás, Kiss Ádám, Kiszel Pál, Tokai Eszter, Kovács Adrienn, Kabay János Szakkollégium",
+	"CQ DE HA8KDA",
+    "Vesztettem"
     );
 
     const constexpr size_t datagram_lenght_ascii = 12;
