@@ -9,7 +9,7 @@
 #include "quotes.hpp"
 
 namespace command_sender{   
-    void sendtel_ll(const char* serial_str, std::array<char, 16>& base64_payload, uint8_t chunkid){
+    void sendtel_ll(const char* serial_str, std::array<char, 16>& base64_payload, const size_t chunkid){
         static const constexpr std::string_view tel_heading = "$SUTEL,";
                 
         tel_heading.copy(output_buffer.data(), tel_heading.size());

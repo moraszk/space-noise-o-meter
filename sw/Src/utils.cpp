@@ -21,11 +21,11 @@ namespace{
         };
     }
 
-    inline std::array<char, 2> byte2ID(int in){
+    inline std::array<char, 2> byte2ID(const size_t in){
         return {
-            encode_table[in / encode_table.size()]
+            encode_table[ (in >> 6) & 63]
             ,
-            encode_table[in % encode_table.size()]
+            encode_table[in & 63]
         };
     }
 
