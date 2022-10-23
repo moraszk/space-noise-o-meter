@@ -65,7 +65,7 @@ int main(void){
 							sat_status.communication.command_without_run++;
 							break;
 						}
-						telecommand::parse_command(frame.getPayload());
+						telecommand::parse_command(frame.getPayload(), frame.getSerialStr());
 						break;
 					case CommandReceiver::Command::RQT:
 						if(sat_status.experiment == sat_stat::experiment::OFF){

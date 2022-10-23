@@ -31,7 +31,7 @@ namespace telecommand{
     };
 
     //cmd example ",A"
-    void parse_command(const char* cmd){
+    void parse_command(const char* cmd, const char* serial){
         telecommand comm {cmd[1]};
         switch(comm){
             case telecommand::reboot:
@@ -79,6 +79,7 @@ namespace telecommand{
             default:
                 sat_status.communication.unknown_command++;
         }
+        command_sender::sendack(serial);
     }
 }
 
