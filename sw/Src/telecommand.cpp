@@ -3,6 +3,7 @@
 #include "measure_memory.hpp"
 #include "status.hpp"
 #include "gpio.hpp"
+#include "command_sender.hpp"
 
 namespace telecommand{
 
