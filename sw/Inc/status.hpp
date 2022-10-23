@@ -49,6 +49,10 @@ public:
     } experiment;
     
     struct {
+        uint16_t errors;
+    } measure;
+
+    struct {
         uint16_t half_vref;
         uint16_t hall_exp;
         uint16_t temp;

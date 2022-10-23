@@ -78,36 +78,56 @@ int main(void){
 						sat_status.communication.unknown_command++;
 				}
 			}
-			else if (sat_status.experiment == sat_stat::experiment::UART_RATES && frame.getBaud() != 0)
-			{
-				switch (frame.getCommand())
+
+			switch (sat_status.experiment){
+				case sat_stat::experiment::UART_RATES:
 				{
-				case CommandReceiver::Command::RQT:
-				case CommandReceiver::Command::RUN:
-				case CommandReceiver::Command::OFF:
-				case CommandReceiver::Command::CMD:
-					measure_memory.baud_rate.register_measure(command::Destinition::OBC, frame.getBaud());
-					break;
-				case CommandReceiver::Command::UNKNOWN:
-					break;
-				case CommandReceiver::Command::ACK:
-				case CommandReceiver::Command::TEL:
-				{
-					// save baud of other modules
-					const command::Destinition dest = frame.getDestinition();
-					if (dest != command::Destinition::UNKNOWN)
+					if (frame.getDestinition() == command::Destinition::SU && frame.getBaud() != 0)
 					{
-						measure_memory.baud_rate.register_measure(dest, frame.getBaud());
+						switch (frame.getCommand())
+						{
+						case CommandReceiver::Command::RQT:
+						case CommandReceiver::Command::RUN:
+						case CommandReceiver::Command::OFF:
+						case CommandReceiver::Command::CMD:
+							measure_memory.baud_rate.register_measure(command::Destinition::OBC, frame.getBaud());
+							break;
+						case CommandReceiver::Command::UNKNOWN:
+							break;
+						case CommandReceiver::Command::ACK:
+						case CommandReceiver::Command::TEL:
+						{
+							// save baud of other modules
+							const command::Destinition dest = frame.getDestinition();
+							if (dest != command::Destinition::UNKNOWN)
+							{
+								measure_memory.baud_rate.register_measure(dest, frame.getBaud());
+							}
+							break;
+						}
+						default:
+							break;
+						}
 					}
-					break;
 				}
+				case sat_stat::experiment::ADC_NOISE:
+				{
+					measure_memory.adc_noise.counter++;
+					if (measure_memory.adc_noise.counter > measure_memory.adc_noise.delay){
+						measure_memory.adc_noise.counter=0;
+						measure_memory.adc_noise.register_measure();
+					}
+				}
+				case sat_stat::experiment::HALL:
+				case sat_stat::experiment::TEMP:
+				case sat_stat::experiment::OFF:
+				case sat_stat::experiment::QUOTES:
 				default:
 					break;
-				}
 			}
 		}
 
 		sat_status.clock = gpio::oscillator::get();
+		wdg::refresh();
 	}
-	wdg::refresh();
 }

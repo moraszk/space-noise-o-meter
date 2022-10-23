@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "utils.hpp"
 #include "command.hpp"
+#include "status.hpp"
 
 union meas_mem_type{
     std::array<unsigned char, 1024> raw_content;
@@ -14,17 +15,21 @@ union meas_mem_type{
         static const constexpr std::size_t histogram_width = 100;
 
         using histogram = std::array<uint16_t, histogram_width>;
-        std::array<histogram, 5> histograms; //TODO change 5 to number of other modules on the bus;
+        std::array<histogram, 5> histograms;
     public:
         void register_measure(command::Destinition dst, int16_t baud_error){
             const uint8_t dst_id = static_cast<uint8_t>(dst);
             const uint16_t baud_bin_index = baud_error + (histogram_width/2);
 
-            if(dst_id>=5)
-                return; //TODO status metric?
+            if(dst_id>=5){
+                sat_status.measure.errors++;
+                return;
+            }
 
-            if(baud_bin_index > histogram_width)
-                return; //TODO status metric?
+            if(baud_bin_index > histogram_width){
+                sat_status.measure.errors++;
+                return;
+            }
 
             auto& hist = histograms[dst_id];
             hist[baud_bin_index]++;
@@ -32,15 +37,25 @@ union meas_mem_type{
     } baud_rate;
 
     class adc_measure_class{
-        static const constexpr std::size_t histogram_width = 512;
+        static const constexpr std::size_t histogram_width = 127;
 
-        std::array<uint16_t, histogram_width> histogram;
+        std::array<uint32_t, histogram_width> histogram;
     public:
-        void register_measure(int16_t error_value){
-            const uint16_t bin_index = error_value + (histogram_width/2);
+        uint16_t counter;
+        int16_t center;
+	//                      ADC prescaler---,        ,-----main worst case shortness
+	constexpr static const uint16_t delay = 64 * 4 - 5;
+	//                                           ˘--number of channels
 
-            if(bin_index>=histogram_width)
-                return; //TODO status metric?
+        void register_measure(){
+            int16_t value = sat_status.adc.half_vref;
+
+            const uint16_t bin_index = (center - value) + (histogram_width/2);
+
+            if(bin_index>=histogram_width){
+                sat_status.measure.errors++;
+                return;
+            }
 
             histogram[bin_index]++;
         }

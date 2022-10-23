@@ -30,9 +30,12 @@ namespace telecommand{
                 break;
             case telecommand::meas_uart:
                 sat_status.experiment = sat_stat::experiment::UART_RATES;
+                measure_memory.zero();
                 break;
             case telecommand::meas_noise:
                 sat_status.experiment = sat_stat::experiment::ADC_NOISE;
+                measure_memory.zero();
+                measure_memory.adc_noise.center = sat_status.adc.half_vref;
                 break;
             case telecommand::meas_hall:
                 sat_status.experiment = sat_stat::experiment::HALL;
