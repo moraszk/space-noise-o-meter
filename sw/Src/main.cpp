@@ -110,6 +110,7 @@ int main(void){
 						}
 					}
 				}
+				break;
 				case sat_stat::experiment::ADC_NOISE:
 				{
 					measure_memory.adc_noise.counter++;
@@ -118,6 +119,7 @@ int main(void){
 						measure_memory.adc_noise.register_measure();
 					}
 				}
+				break;
 				case sat_stat::experiment::HALL:
 				case sat_stat::experiment::TEMP:
 				case sat_stat::experiment::OFF:
