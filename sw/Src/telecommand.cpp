@@ -16,7 +16,8 @@ namespace telecommand{
         meas_quotes = 'Q',
         meas_temp = 'T',
         meas_no_experiment = 'E',
-        hall_vref_on = 'V',
+        hall_v_on = 'V',
+        hall_v_off = 'v',
         tictactoe0 = '0', // invalid moves result in a loss so the game is over
         tictactoe1 = '1',
         tictactoe2 = '2',
@@ -57,8 +58,11 @@ namespace telecommand{
             case telecommand::meas_temp:
                 sat_status.experiment = sat_stat::experiment::TEMP;
                 break;
-            case telecommand::hall_vref_on:
+            case telecommand::hall_v_on:
                 gpio::hall::on();
+                break;
+            case telecommand::hall_v_off:
+                gpio::hall::off();
                 break;
             case telecommand::tictactoe0:
             case telecommand::tictactoe1:
