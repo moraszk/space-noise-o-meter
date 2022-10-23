@@ -17,8 +17,9 @@ union meas_mem_type{
         using histogram = std::array<uint16_t, histogram_width>;
         std::array<histogram, 5> histograms;
     public:
-        void register_measure(command::Destinition dst, int16_t baud_error){
+        void register_measure(command::Destinition dst, int16_t baud){
             const uint8_t dst_id = static_cast<uint8_t>(dst);
+            const int16_t baud_error = baud - 1000;
             const uint16_t baud_bin_index = baud_error + (histogram_width/2);
 
             if(dst_id>=5){
