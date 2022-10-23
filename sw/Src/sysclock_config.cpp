@@ -8,7 +8,7 @@ void SystemClock_Config(void){
 	FLASH->ACR = FLASH_ACR_LATENCY; //One wait state flash
 
 	//wait until the flash latency is 1
-	while(!(FLASH->ACR & FLASH_ACR_LATENCY)); //???? TODO
+	while(!(FLASH->ACR & FLASH_ACR_LATENCY));
 
 	PWR->CR = PWR_CR_VOS_1; //1.5V Core voltage
 
