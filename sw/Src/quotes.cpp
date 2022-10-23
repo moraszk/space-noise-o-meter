@@ -81,7 +81,8 @@ namespace{
         "Ha a napraforgó a napra forog, neki sem mondhatod, hogy pipacsvirág",
         "Contributors: Antal Levente, Oltvári Zsófia, Szendefi Dániel, Südi Tamás, Kiss Ádám, Kiszel Pál, Tokai Eszter, Kovács Adrienn, Kabay János Szakkollégium",
 	"CQ DE HA8KDA",
-    "Vesztettem"
+    "Vesztettem",
+    "I've lost The Game"
     );
 
     const constexpr size_t datagram_lenght_ascii = 12;
