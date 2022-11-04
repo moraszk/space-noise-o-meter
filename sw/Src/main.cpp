@@ -8,6 +8,7 @@
 #include "adc.hpp"
 #include "timer.hpp"
 #include "measure_memory.hpp"
+#include "telecommand.hpp"
 
 /*
  * Bootup process:
@@ -32,7 +33,7 @@ namespace{
 }
 
 int main(void){
-	//wdg::init();
+	wdg::init();
 	gpio::init();
 	timer::init();
 	dma::init();
@@ -51,52 +52,75 @@ int main(void){
 			if(frame.getDestinition() == command::Destinition::SU){
 				switch(frame.getCommand()){
 					case CommandReceiver::Command::RUN:
-						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT)
-							sat_status.experiment = sat_stat::experiment::ADC_NOISE;
+						if(sat_status.experiment == sat_stat::experiment::OFF)
+							sat_status.experiment = sat_stat::experiment::TEMP;
 						command_sender::sendack(frame.getSerialStr());
 						break;
 					case CommandReceiver::Command::OFF:
-						sat_status.experiment = sat_stat::experiment::NO_EXPERIMENT;
+						sat_status.experiment = sat_stat::experiment::OFF;
 						command_sender::sendack(frame.getSerialStr());
 						break;
 					case CommandReceiver::Command::CMD:
-						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT){
+						if(sat_status.experiment == sat_stat::experiment::OFF){
 							sat_status.communication.command_without_run++;
 							break;
 						}
-						//TODO parse command
+						telecommand::parse_command(frame.getPayload(), frame.getSerialStr());
+						break;
 					case CommandReceiver::Command::RQT:
-						if(sat_status.experiment == sat_stat::experiment::NO_EXPERIMENT){
+						if(sat_status.experiment == sat_stat::experiment::OFF){
 							sat_status.communication.command_without_run++;
 							break;
 						}
 						command_sender::sendtel(frame.getSerialStr());
+						break;
 					default:
 						sat_status.communication.unknown_command++;
 				}
-			}
-			else if (frame.getBaud() != 0)
-			{
-				switch (frame.getCommand())
-				{
-				case CommandReceiver::Command::UNKNOWN:
-					break;
-				case CommandReceiver::Command::ACK:
-				case CommandReceiver::Command::TEL:
-					// save baud of other modules
-					const command::Destinition dest = frame.getDestinition();
-					if (dest != command::Destinition::UNKNOWN)
-					{
-						measure_memory.baud_rate.register_measure(dest, frame.getBaud());
-					}
-					break;
-				default:
-					measure_memory.baud_rate.register_measure(command::Destinition::OBC, frame.getBaud());
+			} else {
+				if(sat_status.experiment == sat_stat::experiment::UART_RATES){
+					if (frame.getDestinition() == command::Destinition::SU && frame.getBaud() != 0)
+						{
+							switch (frame.getCommand())
+							{
+							case CommandReceiver::Command::RQT:
+							case CommandReceiver::Command::RUN:
+							case CommandReceiver::Command::OFF:
+							case CommandReceiver::Command::CMD:
+								measure_memory.baud_rate.register_measure(command::Destinition::OBC, frame.getBaud());
+								break;
+							case CommandReceiver::Command::UNKNOWN:
+								break;
+							case CommandReceiver::Command::ACK:
+							case CommandReceiver::Command::TEL:
+							{
+								// save baud of other modules
+								const command::Destinition dest = frame.getDestinition();
+								if (dest != command::Destinition::UNKNOWN)
+								{
+									measure_memory.baud_rate.register_measure(dest, frame.getBaud());
+								}
+								break;
+							}
+							default:
+								break;
+							}
+						}
 				}
+
+			}
+		}
+
+		if (sat_status.experiment == sat_stat::experiment::ADC_NOISE){
+
+			measure_memory.adc_noise.counter++;
+			if (measure_memory.adc_noise.counter > measure_memory.adc_noise.delay){
+				measure_memory.adc_noise.counter=0;
+				measure_memory.adc_noise.register_measure();
 			}
 		}
 
 		sat_status.clock = gpio::oscillator::get();
+		wdg::refresh();
 	}
-	wdg::refresh();
 }

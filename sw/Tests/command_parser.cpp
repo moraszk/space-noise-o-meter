@@ -43,6 +43,7 @@ void test1(){
     if(t1.getCommand() != CommandReceiver::Command::RUN) throw new std::runtime_error("Command error");
     if(t1.calculate_checksum() != 0xcfb2) throw new std::runtime_error("Checksum error2");
     if(!t1.isValid()) throw new std::runtime_error("Validity check error");
+    if(strncmp(",05", t1.getPayload(), 3) != 0) throw new std::runtime_error("payload error");
 /*    if(t1.getNumberOfParams() != 3)  throw new std::runtime_error("Param number error");
 
     if(t1.getParam32(3) != 0x0001D97C)  throw new std::runtime_error("Param read error");

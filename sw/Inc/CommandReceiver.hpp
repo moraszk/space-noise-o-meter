@@ -34,6 +34,7 @@ namespace CommandReceiver{
 		const constexpr static size_t command_offset = 3;
 		const constexpr static size_t checksum_backset = 6;
 		const constexpr static size_t serial_backset = 9;
+		const constexpr static size_t payload_offset = 6;
 
 		std::array<char,rx_buffer_size> buff;
 		size_t size;
@@ -54,10 +55,10 @@ namespace CommandReceiver{
 			//t1 equals to two baud time
 			//t2 equals to five baud time
 
-			constexpr uint32_t normal_baud_time = 10000000/10000; //AHB Clock per baud
-			constexpr uint32_t t1_normal_value [[unused]] = normal_baud_time * 2;
-			constexpr uint32_t t2_normal_value [[unused]] = normal_baud_time * 5;
-			constexpr uint32_t allowed_error_seven_times = normal_baud_time * 7 * 0.03 ;
+			constexpr const uint32_t normal_baud_time = 10000000/10000; //AHB Clock per baud
+			constexpr const uint32_t t1_normal_value [[maybe_unused]] = normal_baud_time * 2;
+			constexpr const uint32_t t2_normal_value [[maybe_unused]] = normal_baud_time * 5;
+			constexpr const uint32_t allowed_error_seven_times = normal_baud_time * 7 * 0.03 ;
 
 			if( ( (t2*2) > (t1*5) + allowed_error_seven_times ) || ( (t2*2) < (t1*5) - allowed_error_seven_times ) ){
 				baud = 0;
@@ -68,6 +69,10 @@ namespace CommandReceiver{
 
 		size_t getSize() const {
 			return size;
+		}
+
+		const char * getPayload() const {
+			return &buff[payload_offset];
 		}
 
 		unsigned getBaud() const {

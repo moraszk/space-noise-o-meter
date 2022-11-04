@@ -9,12 +9,12 @@
 #include "quotes.hpp"
 
 namespace command_sender{   
-    void sendtel_ll(const char* serial_str, std::array<char, 16>& base64_payload, uint8_t chunkid){
+    void sendtel_ll(const char* serial_str, std::array<char, 16>& base64_payload, const size_t chunkid){
         static const constexpr std::string_view tel_heading = "$SUTEL,";
                 
         tel_heading.copy(output_buffer.data(), tel_heading.size());
         
-        const std::array<char, 2>& chunkhexstr = utils::char2hex(chunkid);
+        const std::array<char, 2> chunkhexstr = utils::char2ID(chunkid);
         output_buffer[tel_heading.size()]= chunkhexstr[0];
         output_buffer[tel_heading.size()+1]= chunkhexstr[1];
         
@@ -51,7 +51,8 @@ namespace command_sender{
         std::array<char, 16> payload;
         
         switch(sat_status.experiment){
-            case sat_stat::experiment::NO_EXPERIMENT:
+            case sat_stat::experiment::TEMP:
+            case sat_stat::experiment::HALL:
                 if (chunk_id >= sat_stat__number_of_chunks)
                     chunk_id=0;
                 begin = sat_status.getchunk(chunk_id);
@@ -76,11 +77,9 @@ namespace command_sender{
                 } else{
                     begin = quotes::get_chunk(chunk_id-sat_stat__number_of_chunks);
                 }
-            case sat_stat::experiment::TEMP:
-            case sat_stat::experiment::HALL:
+                break;
             default:
-                //TODO
-                (void)6;
+                return;
         }
             
         

@@ -1,0 +1,8 @@
+{
+  "debug.inlineValues": "on",
+  "debug.showInlineBreakpointCandidates": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true
+}

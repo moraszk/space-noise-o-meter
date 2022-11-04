@@ -29,6 +29,7 @@ namespace utils{
     }
 
     const std::array<char, 2>& char2hex(const unsigned char in);
+    const std::array<char, 2> char2ID(const size_t in);
 
     void copyashex(const uint16_t number, char* begin);
 
