@@ -69,6 +69,12 @@ int main(){
         case sat_stat::experiment::HALL: std::cout << "HALL"; break;
     }
     std::cout << std::endl;
+    
+    //                STM vref [V] ---,                0 degree offset of lm61   -------,    ,----slope of lm61
+    std::cout << "Temperature: " << (1.224*work.parsed.adc.temp/work.parsed.adc.vref - 0.6)/.01 << " degree celsius" << std::endl;
+    
+    std::cout << "VCC: " << 1.224*(1<<12)/work.parsed.adc.vref << " volts" << std::endl;
+    
 
     return 0;
 }
