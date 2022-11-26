@@ -72,9 +72,17 @@ int main(){
     
     //                STM vref [V] ---,                0 degree offset of lm61   -------,    ,----slope of lm61
     std::cout << "Temperature: " << (1.224*work.parsed.adc.temp/work.parsed.adc.vref - 0.6)/.01 << " degree celsius" << std::endl;
-    
     std::cout << "VCC: " << 1.224*(1<<12)/work.parsed.adc.vref << " volts" << std::endl;
-    
+    std::cout << "Oscillator: " << (work.parsed.clock ? "SECONDARY" : "PRIMARY") << std::endl;
+    std::cout << "Voltage divider: " << (1.224*work.parsed.adc.half_vref/work.parsed.adc.vref) << " volts" << std::endl;
+    std::cout << "UART received chars " << work.parsed.uart.received_char << std::endl;
+    std::cout << "UART idles " << work.parsed.uart.idle << std::endl;
+    std::cout << "UART errors: " << work.parsed.uart.frame_error + work.parsed.uart.midpacket_char + work.parsed.uart.noise_error + work.parsed.uart.overrun_error << std::endl;
+    std::cout << "Measure errors: " << work.parsed.measure.errors << std::endl;;
+    std::cout << "Comm errors: " << std::dec << static_cast<size_t>(work.parsed.communication.command_without_run) + work.parsed.communication.mrc_buffer_overflow + static_cast<size_t>(work.parsed.communication.unknown_command) << " from wihch unknown command: " << static_cast<size_t>(work.parsed.communication.unknown_command) << std::endl;
+    std::cout << "Unkown interrupts: " << static_cast<size_t>(work.parsed.unknown_interrupt) << std::endl;
 
+    std::cout << work.parsed.tictactoe.get_board()[0] << '|' << work.parsed.tictactoe.get_board()[1] << '|' << work.parsed.tictactoe.get_board()[2] << '|' << std::endl << work.parsed.tictactoe.get_board()[3] << '|' << work.parsed.tictactoe.get_board()[4] << '|' << work.parsed.tictactoe.get_board()[5] << '|' << std::endl <<
+    work.parsed.tictactoe.get_board()[6] << '|' << work.parsed.tictactoe.get_board()[7] << '|' << work.parsed.tictactoe.get_board()[8] << '|' << std::endl;
     return 0;
 }
